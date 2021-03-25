@@ -11,6 +11,8 @@ public:
 	void Show();
 
 private:
+	void Update();
+
 	int row_num;
 	int col_num;
 	int square_height;

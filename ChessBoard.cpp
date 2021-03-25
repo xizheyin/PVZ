@@ -31,19 +31,7 @@ void ChessBoard::Show() {
 	for (int i = 0; i < 4; i++) {
 		cout << "*****************************************************************************"<<endl<<endl<<endl;
 	}
-	
-	for (int i = 0; i < row_num; i++) {
-		for (int j = 0; j < col_num; j++) {
-			set_std_pos(i * square_height, j * square_width);
-			if (vec[i][j] != nullptr) {
-				if (vec[i][j]->GetStatus() == Object::Dead) {
-					Object* del = vec[i][j];
-					vec[i][j] = nullptr;
-					delete[] del;
-				}
-			}
-		}
-	}
+	Update();
 	set_std_pos(0, 1);
 	for (int i = 0; i < row_num; i++) {
 		for (int j = 0; j < col_num; j++) {
@@ -53,6 +41,21 @@ void ChessBoard::Show() {
 			}
 			else {
 				cout << "None";
+			}
+		}
+	}
+}
+
+void ChessBoard::Update() {
+	for (int i = 0; i < row_num; i++) {
+		for (int j = 0; j < col_num; j++) {
+			set_std_pos(i * square_height, j * square_width);
+			if (vec[i][j] != nullptr) {
+				if (vec[i][j]->GetStatus() == Object::Dead) {
+					Object* del = vec[i][j];
+					vec[i][j] = nullptr;
+					delete[] del;
+				}
 			}
 		}
 	}

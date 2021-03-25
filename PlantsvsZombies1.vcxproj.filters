@@ -39,6 +39,15 @@
     <ClCompile Include="Config.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="AbstractZombie.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PeaShooter.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalZombie.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractPlant.h">
@@ -60,6 +69,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Object.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractZombie.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PeaShooter.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalZombie.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

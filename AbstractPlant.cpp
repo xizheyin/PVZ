@@ -3,7 +3,7 @@
 
 
 
-AbstractPlant::AbstractPlant(int x,int y,int Hp):Hp(Hp),x(x),y(y) {
+AbstractPlant::AbstractPlant(int hp):Object(0,hp) {
 	
 }
 AbstractPlant::~AbstractPlant() {

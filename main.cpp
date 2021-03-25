@@ -3,8 +3,6 @@
 
 using namespace std;
 
-
-
 int main() {
 	MainWindow mainwindow;
 	mainwindow.show();

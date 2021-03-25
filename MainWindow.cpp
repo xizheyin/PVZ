@@ -13,34 +13,25 @@ MainWindow::~MainWindow() {
 
 void MainWindow::show() {
 	system("cls");
-	cout << "***********************************************" << endl;
-	cout << "+   Welcome To My PLANTS And ZOMBIES World!   +" << endl;
-	cout << "***********************************************" << endl;
-	cout << "请你选择：   1.进入游戏    2.帮助    3.退出游戏" << endl;
+	ShowWindowHead();
 	int n;
-	
 	while (cin >> n) {
 		switch (n) {
 		case 1:
-			gamewindow -> Show();
-			break;
+			gamewindow -> Show();break;
 		case 2:
-
 			break;
 		case 3:
-			exitMainWindow();
-			break;
+			exitMainWindow();break;
 		default:
-			set_std_color(FOREGROUND_RED);
-			cout << "您输入了错误数字，请重新输入" << endl;
-			reset_std_color();
-			Sleep(600);
-			show();
-			break;
+			WrongInput();break;
 		}
 	}
 }
 
+void MainWindow::PlayMusic() {
+	::PlaySound(TEXT("PVZ.wav"), NULL, SND_LOOP);
+}
 
 void MainWindow::exitMainWindow() {
 	system("cls");
@@ -51,6 +42,22 @@ void MainWindow::exitMainWindow() {
 	set_std_color(FOREGROUND_RED|FOREGROUND_GREEN);
 	cout << "Game Designed by YXZ from NJUCS19" << endl;
 	reset_std_color();
-	Sleep(2000);
+	PlayMusic();
+	Sleep(60000);
 	exit(1);
+}
+
+void MainWindow::ShowWindowHead() {
+	cout << "***********************************************" << endl;
+	cout << "+   Welcome To My PLANTS And ZOMBIES World!   +" << endl;
+	cout << "***********************************************" << endl;
+	cout << "请你选择：   1.进入游戏    2.帮助    3.退出游戏" << endl;
+}
+
+void MainWindow::WrongInput() {
+	set_std_color(FOREGROUND_RED);
+	cout << "您输入了错误数字，请重新输入" << endl;
+	reset_std_color();
+	Sleep(600);
+	show();
 }

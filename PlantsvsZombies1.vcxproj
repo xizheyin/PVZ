@@ -140,22 +140,28 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AbstractPlant.cpp" />
+    <ClCompile Include="AbstractZombie.cpp" />
     <ClCompile Include="ChessBoard.cpp" />
     <ClCompile Include="Config.cpp" />
     <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
+    <ClCompile Include="NormalZombie.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="OptionWindow.cpp" />
+    <ClCompile Include="PeaShooter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractPlant.h" />
+    <ClInclude Include="AbstractZombie.h" />
     <ClInclude Include="ChessBoard.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="GameWindow.h" />
     <ClInclude Include="MainWindow.h" />
+    <ClInclude Include="NormalZombie.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="OptionWindow.h" />
+    <ClInclude Include="PeaShooter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

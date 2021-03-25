@@ -1,14 +1,15 @@
 #include "Object.h"
 
 
-
-Object::Object(int type) {
-	mytype = static_cast<Type>(type);
-	mystatus = Healthy;
+Object::Object(int ty, int Hp) {
+	mytype = (Type)ty;
+	myhp = Hp;
 }
+
 Object::~Object() {
 
 }
+
 string Object::GetName()const {
 	switch (mytype)
 	{
@@ -33,10 +34,9 @@ void Object::Attack() {
 
 }
 
-
 void Object::Isattacked() {
-	hp--;
-	if (hp == 0)die();
+	myhp--;
+	if (myhp <= 0)die();
 }
 
 void Object::die() {

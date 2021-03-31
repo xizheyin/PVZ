@@ -156,7 +156,7 @@ void ChessBoard::ZombieMove(int i,int j) {
 void ChessBoard::BulletMove(int i, int j) {
 	Bullet* blt = bulletyard[i][j];
 	int sp = blt->GetSpeed();
-	if (sp + j >= maxcol) {//如果子弹过界了，就清除它
+	if (sp + j >= maxcol-2) {//如果子弹过界了，就清除它
 		delete blt;
 	}
 	else {//没过界就移动

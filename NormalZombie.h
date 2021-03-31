@@ -4,9 +4,9 @@ class NormalZombie :
     public AbstractZombie
 {
 public:
-    NormalZombie(int hp);
+    NormalZombie(int hp,int r);
     ~NormalZombie();
-
+    Attack AttackEnemy();
 private:
 };
 

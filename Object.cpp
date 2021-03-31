@@ -1,9 +1,11 @@
 #include "Object.h"
 
 
-Object::Object(int ty, int Hp) {
+Object::Object(int ty, int Hp,int r,int c) {
 	mytype = (Type)ty;
 	myhp = Hp;
+	row = r;
+	col = c;
 }
 
 Object::~Object() {
@@ -13,10 +15,8 @@ Object::~Object() {
 string Object::GetName()const {
 	switch (mytype)
 	{
-	case Plant:return string("Plant"); break;
-	case Zombies:return string("Zombies"); break;
-	case Pea:return string("Pea"); break;
-	case Flower:return string("Flower"); break;
+	case Plant_t:return string("Plant"); break;
+	case Zombie_t:return string("Zombie"); break;
 	default:
 		break;
 	}
@@ -30,12 +30,9 @@ int Object::GetStatus()const {
 	return mystatus;
 }
 
-void Object::Attack() {
 
-}
-
-void Object::Isattacked() {
-	myhp--;
+void Object::Isattacked(int hurt) {
+	myhp -= hurt;
 	if (myhp <= 0)die();
 }
 

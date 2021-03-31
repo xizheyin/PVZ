@@ -48,6 +48,15 @@
     <ClCompile Include="NormalZombie.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="GameControl.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Attack.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractPlant.h">
@@ -78,6 +87,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="NormalZombie.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GameControl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Attack.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

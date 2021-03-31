@@ -18,7 +18,7 @@ void MainWindow::show() {
 	while (cin >> n) {
 		switch (n) {
 		case 1:
-			gamewindow -> Show();break;
+			gamewindow -> Play();break;
 		case 2:
 			break;
 		case 3:

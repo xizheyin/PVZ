@@ -1,11 +1,11 @@
 #include "AbstractZombie.h"
 
 
-AbstractZombie::AbstractZombie(int hp)
+AbstractZombie::AbstractZombie(int hp, int r)
 	:
-	Object(1,hp) 
+	Object(hp, hp, r, COL_NUM-2 )
 {
-
+	mytype = Object::Zombie_t;
 }
 
 AbstractZombie::~AbstractZombie() {

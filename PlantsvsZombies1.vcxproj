@@ -141,8 +141,11 @@
   <ItemGroup>
     <ClCompile Include="AbstractPlant.cpp" />
     <ClCompile Include="AbstractZombie.cpp" />
+    <ClCompile Include="Attack.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="ChessBoard.cpp" />
     <ClCompile Include="Config.cpp" />
+    <ClCompile Include="GameControl.cpp" />
     <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
@@ -154,8 +157,11 @@
   <ItemGroup>
     <ClInclude Include="AbstractPlant.h" />
     <ClInclude Include="AbstractZombie.h" />
+    <ClInclude Include="Attack.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="ChessBoard.h" />
     <ClInclude Include="Config.h" />
+    <ClInclude Include="GameControl.h" />
     <ClInclude Include="GameWindow.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="NormalZombie.h" />

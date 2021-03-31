@@ -3,7 +3,9 @@
 class PeaShooter :
     public AbstractPlant
 {
-    PeaShooter(int hp);
+public:
+    PeaShooter(int hp,int r,int c);
     ~PeaShooter();
+    Attack AttackEnemy();
 };
 

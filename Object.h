@@ -5,6 +5,14 @@
 #include"Bullet.h"
 using namespace std;
 
+/*
+* “物体”虚基类
+*  利用多态，一个object pointer可以指向任何植物或者僵尸
+*  植物和僵尸的基类AbstractPlant和AbstractZombie继承它
+*/
+
+
+
 class Object
 {
 public:
@@ -20,22 +28,35 @@ public:
 	//根据种类来获得名字，以便输出
 	virtual string GetName()const;
 	//获得当前种类
-	int GetType()const;
+	int GetType()const { return mytype; }
 	//获得当前状态
-	int GetStatus()const;
+	int GetStatus()const { return mystatus; }
 	//获得当前行列
 	RCPair GetRC()const { return RCPair(row, col); }
-	//攻击他人
+	//设置行
+	int SetRow(int r) { row = r; }
+	//设置列
+	int SetCol(int c) { col = c; }
+	//获得行
+	int GetRow()const { return row; }
+	//获得列
+	int GetCol()const { return col; }
+	//攻击他人,纯虚函数，不同的植物僵尸需要重新定义！
 	virtual Attack AttackEnemy() = 0;
 	//收到攻击减一点血
 	void Isattacked(int hurt);
 	//死去，改变状态
 	void die();
+	//设置行和列
 	void SetRC(int r,int c) { row = r; col = c; }
 protected:
+	//我的生命值
 	int myhp;
+	//我的种类，上面定义了枚举类型
 	Type mytype;
+	//我的状态，健康or死亡，最后根据这个进行清除植物和僵尸
 	Status mystatus;
+	//行，列
 	int row, col;
 };
 

@@ -72,7 +72,7 @@ void ChessBoard::Show() {
 	for (int i = 0; i < 4; i++) {//分割线
 		cout << "*****************************************************************************"<<endl<<endl<<endl;
 	}
-	Update();//更新状态
+	//Update();//更新状态
 	set_std_pos(0, 1);
 	for (int i = 0; i < maxrow; i++) {//显示存在的物体的名字
 		for (int j = 0; j < maxcol; j++) {
@@ -94,6 +94,7 @@ void ChessBoard::Show() {
 //更新状态
 void ChessBoard::Update() {
 	
+	//检查每一个Obj
 	for (int i = 0; i < maxrow; i++) {
 		for (int j = 0; j < maxcol; j++) {
 			if (yard[i][j] != nullptr) {
@@ -110,6 +111,7 @@ void ChessBoard::Update() {
 		}
 	}
 
+	//子弹从右向左遍历，因为子弹会右移，然后再次遍历就会继续往前走，导致bug
 	for (int i = 0; i < maxrow; i++) {
 		for (int j = maxcol-1; j >=0; j--) {
 			if (bulletyard[i][j] != nullptr) {
@@ -119,13 +121,14 @@ void ChessBoard::Update() {
 	}
 }
 
-
+//清除Obj
 void ChessBoard::ClearObj(int i, int j) {
 	Object* del = yard[i][j];//如果死了就清除！
 	yard[i][j] = nullptr;
 	delete del;
 }
 
+//清除子弹
 void ChessBoard::ClearBullet(int r, int c) {
 	Bullet* blt = bulletyard[r][c];
 	bulletyard[r][c] = nullptr;

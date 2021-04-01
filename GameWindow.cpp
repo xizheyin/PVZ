@@ -16,7 +16,7 @@ void GameWindow::Play() {
 	while (1) {
 		this->Update();
 		this->Show();
-		Sleep(500);//每隔0.5秒刷新一次
+		Sleep(200);//每隔0.5秒刷新一次
 	}
 }
 

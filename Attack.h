@@ -36,13 +36,15 @@ public:
 	Bullet* GetBullet() { return bullet; }
 	//获取攻击类型
 	int GetAttackType()const { return attacktype; }
-
+	//设置攻击值
 	void SetATK(int atk) { ATK = atk; }
+	//获得攻击值
 	int GetATK()const { return ATK; }
 
 private:
 	//攻击类型
 	int attacktype;
+	//攻击值
 	int ATK;
 	//子弹
 	Bullet* bullet;

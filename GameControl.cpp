@@ -3,8 +3,10 @@
 
 
 //更新棋盘上生物的状态（开始攻击）
+//让棋盘上的生物进行攻击
 void GameControl::UpdateChessbd(ChessBoard* chessbd) {
 
+	//对棋盘上所有方格进行遍历
 	for (int i = 0; i < ROW_NUM; i++) {
 		for (int j = 0; j < COL_NUM; j++) {
 
@@ -26,15 +28,13 @@ void GameControl::UpdateChessbd(ChessBoard* chessbd) {
 			default:
 				break;
 			}
-			
-			
-			
+
 
 		}
 	}
 }
 
-//控制植物攻击
+//控制植物攻击，目前只有豌豆射手
 void GameControl::PlantControl(Object* obj,ChessBoard* chessbd) {
 	//RCPair rc = obj->GetRC();
 	Attack attack=obj->AttackEnemy();
@@ -48,7 +48,8 @@ void GameControl::PlantControl(Object* obj,ChessBoard* chessbd) {
 	}
 }
 
-//控制僵尸攻击
+
+//控制僵尸攻击，目前只有普通僵尸
 void GameControl::ZombieControl(Object* obj,ChessBoard* chessbd) {
 	Attack attack = obj->AttackEnemy();
 	RCPair rc = obj->GetRC();
@@ -65,12 +66,13 @@ void GameControl::ZombieControl(Object* obj,ChessBoard* chessbd) {
 			}
 		}
 		break;
+
 	default:
 		break;
 	}
 }
 
-
+//控制子弹进行攻击，记住，攻击当前和前面的一个人，因为僵尸和子弹同时动
 void GameControl::BulletControl(Bullet* blt, ChessBoard* chessbd) {
 	int r = blt->GetRow();
 	int c = blt->GetCol();
@@ -81,7 +83,7 @@ void GameControl::BulletControl(Bullet* blt, ChessBoard* chessbd) {
 		}
 		chessbd->ClearBullet(r, c);
 	}
-	obj = chessbd->GetObject(r, c + 2);//子弹前面的一个
+	obj = chessbd->GetObject(r, c + 1);//子弹前面的一个
 	if (obj != nullptr) {
 		if (obj->GetType() == Object::Zombie_t) {
 			obj->Isattacked(blt->GetATK());
@@ -89,3 +91,4 @@ void GameControl::BulletControl(Bullet* blt, ChessBoard* chessbd) {
 		chessbd->ClearBullet(r, c);
 	}
 }
+

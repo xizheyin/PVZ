@@ -12,7 +12,7 @@ NormalZombie::~NormalZombie() {
 }
 
 
-Attack NormalZombie::AttackEnemy() {
+Attack NormalZombie::AttackEnemy(int time) {
 	Attack atk(Attack::Zombie);
 	atk.SetATK(1);
 	return atk;

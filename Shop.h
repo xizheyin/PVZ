@@ -16,6 +16,8 @@ private:
 	bool Confirm(int n);
 	void SettlePlant(Object* obj, ChessBoard* chessbd);
 
+	void PrintSelectBox(int r,int c);
+
 	//返回一个（row,col）二元组，表示存放的位置
 	const RCPair SelectArea(ChessBoard* chessbd);
 };

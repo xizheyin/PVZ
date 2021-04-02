@@ -37,7 +37,8 @@ void GameControl::UpdateChessbd(ChessBoard* chessbd) {
 //控制植物攻击，目前只有豌豆射手
 void GameControl::PlantControl(Object* obj,ChessBoard* chessbd) {
 	//RCPair rc = obj->GetRC();
-	Attack attack=obj->AttackEnemy();
+	Attack attack=obj->AttackEnemy(chessbd->GetTime());
+	if (attack.GetAttackType() == Attack::None)return;
 	switch (attack.GetAttackType())
 	{
 	case Attack::PeaShooter:
@@ -51,7 +52,7 @@ void GameControl::PlantControl(Object* obj,ChessBoard* chessbd) {
 
 //控制僵尸攻击，目前只有普通僵尸
 void GameControl::ZombieControl(Object* obj,ChessBoard* chessbd) {
-	Attack attack = obj->AttackEnemy();
+	Attack attack = obj->AttackEnemy(chessbd->GetTime());
 	RCPair rc = obj->GetRC();
 	int ATK = 0;
 	Object* enemy = nullptr;
@@ -59,10 +60,11 @@ void GameControl::ZombieControl(Object* obj,ChessBoard* chessbd) {
 	{
 	case Attack::Zombie:
 		ATK = attack.GetATK();
+		if (rc.col == 0)return;
 		enemy = chessbd->GetObject(rc.row, rc.col-1);//找到前面的植物，
-		if (obj != nullptr) {
-			if (obj->GetType() == Object::Plant_t) {
-				obj->Isattacked(ATK);
+		if (enemy != nullptr) {
+			if (enemy->GetType() == Object::Plant_t) {
+				enemy->Isattacked(ATK);
 			}
 		}
 		break;

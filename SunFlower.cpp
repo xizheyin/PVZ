@@ -16,6 +16,6 @@ SunFlower::~SunFlower() {
 
 
 
-Attack SunFlower::AttackEnemy() {
+Attack SunFlower::AttackEnemy(int time) {
 	return Attack(Attack::None);
 }

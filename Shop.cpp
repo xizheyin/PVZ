@@ -94,13 +94,16 @@ void Shop::SettlePlant(Object* obj, ChessBoard* chessbd) {
 
 //选择地块
 const RCPair Shop::SelectArea(ChessBoard* chessbd) {
-	system("cls");
-	chessbd->Show();
+	RCPair rcp(-1,-1);
+
 	char chInput;//定义一个char型变量存储按下按键的值
 	int r=0, c=0;
 	Pos pos = GetPos(r, c);
 	set_std_pos(pos.x, pos.y);
 	while (1) {
+		system("cls");
+		chessbd->Show();
+		PrintSelectBox(r, c);
 		if (_kbhit())//如果有按键按下
 		{
 			chInput = _getch();//获取按下的按键
@@ -141,4 +144,21 @@ const RCPair Shop::SelectArea(ChessBoard* chessbd) {
 			}
 		}
 	}
+	
+}
+
+
+void Shop::PrintSelectBox(int r, int c) {
+	Pos pos = GetPos(r, c);
+	int x = pos.x, y = pos.y;
+	set_std_color(FOREGROUND_RED);
+	set_std_pos(x - 1, y - 1);
+	cout << "###";
+	set_std_pos(x - 1, y);
+	cout << "#";
+	set_std_pos(x + 1, y);
+	cout << "#";
+	set_std_pos(x - 1, y + 1);
+	cout << "###";
+	reset_std_color();
 }

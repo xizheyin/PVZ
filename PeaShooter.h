@@ -9,8 +9,10 @@ public:
     //析构函数
     ~PeaShooter();
     //重定义攻击函数
-    Attack AttackEnemy();
+    Attack AttackEnemy(int time);
     //重定义获取姓名函数
     string GetName()const { return string("PeaShooter"); }
+private:
+    int timegap;
 };
 

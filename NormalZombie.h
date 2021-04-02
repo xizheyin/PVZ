@@ -9,7 +9,7 @@ public:
     //析构函数
     ~NormalZombie();
     //重定义攻击函数
-    Attack AttackEnemy();
+    Attack AttackEnemy(int time);
     //重定义名称函数
     string GetName()const { return string("NorZombie"); }
 private:

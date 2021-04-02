@@ -42,7 +42,7 @@ public:
 	//获得列
 	int GetCol()const { return col; }
 	//攻击他人,纯虚函数，不同的植物僵尸需要重新定义！
-	virtual Attack AttackEnemy() = 0;
+	virtual Attack AttackEnemy(int time) = 0;
 	//收到攻击减一点血
 	void Isattacked(int hurt);
 	//死去，改变状态

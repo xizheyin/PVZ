@@ -21,6 +21,10 @@ public:
 	//Ë¢ÐÂÆÁÄ»
 	void Show();
 	
+	void GameOver();
+
+	void PlayMusic();
+
 private:
 	GameControl* gamectrl;
 	ChessBoard* chessbd;

@@ -18,7 +18,7 @@ public:
 	//显示函数
 	void Show();
 	//更新状态
-	void Update();
+	bool Update();
 	//在某位置添加植物，如果不行返回false
 	bool AddPlant(AbstractPlant* plant,int row,int col);
 	//在某行添加僵尸
@@ -35,6 +35,8 @@ public:
 	Bullet* GetBullet(int r, int c) { return bulletyard[r][c]; }
 	//清除行列的子弹
 	void ClearBullet(int r, int c);
+	//获得时间
+	unsigned int GetTime()const { return timecounter; }
 private:
 	//清除当前行列的Obj
 	void ClearObj(int i,int j);
@@ -44,7 +46,13 @@ private:
 	void ZombieMove(int i, int j);
 	//子弹进行移动
 	void BulletMove(int i, int j);
+	//按照一定时间产生僵尸
+	void CreateZombie();
 
+	void TimeUp();
+	
+
+	unsigned int timecounter;
 
 	//最大行数
 	int maxrow;

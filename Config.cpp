@@ -22,9 +22,21 @@ void set_std_pos(int x, int y)
 }
 
 //利用row和col获得x和y
-Pos GetPos(int row, int col) { return Pos(col * SQUARE_WIDTH, 2 + row * SQUARE_HEIGHT); }
+Pos GetPos(int row, int col) { return Pos(1 + col * SQUARE_WIDTH, 2 + row * SQUARE_HEIGHT); }
 
 //判断是否超界
 bool judge_pos(int row, int col) {
     return (row >= 0 && col >= 0 && row < ROW_NUM&& col < COL_NUM);
+}
+
+//生成随机数，Max是随机数最大值
+int random_num(int Max) {
+    srand(time(NULL));
+    return rand() % Max;
+}
+
+//基于某个种子生成随机数
+int random_num_based_seed(int Max, int seed) {
+    srand(seed);
+    return rand() % Max;
 }

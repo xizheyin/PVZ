@@ -8,7 +8,8 @@ ChessBoard::ChessBoard()
 	maxrow(ROW_NUM), //行数
 	maxcol(COL_NUM), //列数
 	square_height(SQUARE_HEIGHT),//格子竖直间距
-	square_width(SQUARE_WIDTH)//格子水平间距
+	square_width(SQUARE_WIDTH),//格子水平间距
+	timecounter(0)//计时器
 {
 	for (int i = 0; i < maxrow+2; i++) {//对行列数组初始化
 		vector<Object*> Orow;
@@ -24,11 +25,11 @@ ChessBoard::ChessBoard()
 			bulletyard[i].push_back(bp);
 		}
 	}
-	PeaShooter* ps = new PeaShooter(10, 1, 0);
+	/*PeaShooter* ps = new PeaShooter(10, 1, 0);
 	yard[1][0] = ps;
 	NormalZombie* pz = new NormalZombie(10, 1);
 	RCPair rc = pz->GetRC();
-	yard[rc.row][rc.col] = pz;
+	yard[rc.row][rc.col] = pz;*/
 }
 
 //析构
@@ -73,7 +74,7 @@ void ChessBoard::Show() {
 	ios::sync_with_stdio(false);
 	//cin.tie(0);
 	for (int i = 0; i < 4; i++) {//分割线
-		cout << "*****************************************************************************"<<endl<<endl<<endl;
+		cout << "*****************************************************************************" << endl << endl << endl << endl;
 	}
 	//Update();//更新状态
 	set_std_pos(0, 1);
@@ -95,8 +96,10 @@ void ChessBoard::Show() {
 	}
 }
 //更新状态
-void ChessBoard::Update() {
-	
+bool ChessBoard::Update() {
+	//每次更新时候都要让时间加1
+	TimeUp();
+	CreateZombie();
 	//检查每一个Obj
 	for (int i = 0; i < maxrow; i++) {
 		for (int j = 0; j < maxcol; j++) {
@@ -106,7 +109,7 @@ void ChessBoard::Update() {
 					continue;
 				}
 				if (yard[i][j]->GetType() == Object::Zombie_t) {//检查是不是僵尸，僵尸可以移动
-					if (j == 0)cout << "游戏结束！";
+					if (j == 0) return false;//如果僵尸越界
 					ZombieMove(i, j);
 				}
 				
@@ -170,4 +173,27 @@ void ChessBoard::BulletMove(int i, int j) {
 		bulletyard[i][j + sp] = blt;
 	}
 	bulletyard[i][j] = nullptr;
+}
+
+void ChessBoard::TimeUp() {
+	timecounter++;
+}
+
+void ChessBoard::CreateZombie() {
+	Object* obj = nullptr;
+	NormalZombie* pz = nullptr;
+	if (timecounter % TIME_GAP_CREATE_ZOMBIE==0) {
+		int Row = random_num(ROW_NUM);
+		switch ( random_num(MAX_KINDS_ZOMBIES) )
+		{
+		case 0:
+			obj = new NormalZombie(10, Row);
+			break;
+		default:
+			break;
+		}
+
+		RCPair rc = obj->GetRC();
+		yard[rc.row][rc.col] = obj;
+	}
 }

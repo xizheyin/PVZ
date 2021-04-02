@@ -19,10 +19,13 @@ public:
 		NormalZombie
 	};
 
-	Attack(int _attacktype) { attacktype = _attacktype; }
+	Attack(int _attacktype) { 
+		attacktype = _attacktype;
+	}
 	Attack(const Attack& rh) {
 		attacktype = rh.attacktype;
 		bullet = rh.bullet;
+		ATK = rh.ATK;
 	}
 	Attack& operator=(const Attack& rh) {
 		attacktype = rh.attacktype;
@@ -40,6 +43,7 @@ public:
 	int GetATK()const { return ATK; }
 
 private:
+
 	//¹¥»÷ÀàÐÍ
 	int attacktype;
 	//¹¥»÷Öµ

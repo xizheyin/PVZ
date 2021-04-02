@@ -2,19 +2,17 @@
 #include "Bullet.h"
 
 
-
 /*
 * 攻击类!
 * object的攻击函数返回一个攻击类对象
 * 其中有各种不同的功能
 */
 
-
-
 class Attack
 {
 public:
 	enum {
+		None,
 		Plant,
 		Zombie,
 		PeaShooter,

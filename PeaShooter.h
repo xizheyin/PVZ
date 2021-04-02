@@ -4,8 +4,13 @@ class PeaShooter :
     public AbstractPlant
 {
 public:
-    PeaShooter(int hp,int r,int c);
+    //构造函数
+    PeaShooter(int hp, int r = -1, int c = -1);
+    //析构函数
     ~PeaShooter();
+    //重定义攻击函数
     Attack AttackEnemy();
+    //重定义获取姓名函数
+    string GetName()const { return string("PeaShooter"); }
 };
 

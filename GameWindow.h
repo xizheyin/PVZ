@@ -1,6 +1,7 @@
 #pragma once
 #include"ChessBoard.h"
 #include"GameControl.h"
+#include"Shop.h"
 #include<Windows.h>
 #include<iostream>
 
@@ -23,5 +24,6 @@ public:
 private:
 	GameControl* gamectrl;
 	ChessBoard* chessbd;
+	Shop* shop;
 };
 

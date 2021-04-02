@@ -1,7 +1,14 @@
 #include "GameWindow.h"
+#include<conio.h>
+
 
 //构造函数
-GameWindow::GameWindow():chessbd(new ChessBoard()),gamectrl(new GameControl()) {
+GameWindow::GameWindow()
+	:
+	chessbd(new ChessBoard()),
+	gamectrl(new GameControl()),
+	shop(new Shop())
+{
 
 }
 
@@ -9,11 +16,17 @@ GameWindow::GameWindow():chessbd(new ChessBoard()),gamectrl(new GameControl()) {
 GameWindow::~GameWindow() {
 	delete chessbd;
 	delete gamectrl;
+	delete shop;
 }
 
 //游戏函数，通过一个循环，每次更新棋盘和刷新屏幕
 void GameWindow::Play() {
 	while (1) {
+		if (_kbhit()) {
+			if (_getch() == 'b') {
+				shop->BuyPlant(chessbd);
+			}
+		}
 		this->Update();
 		this->Show();
 		Sleep(200);//每隔0.5秒刷新一次

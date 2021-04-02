@@ -26,7 +26,7 @@ public:
 	//析构函数
 	~Object();
 	//根据种类来获得名字，以便输出
-	virtual string GetName()const;
+	virtual string GetName()const=0;
 	//获得当前种类
 	int GetType()const { return mytype; }
 	//获得当前状态
@@ -34,9 +34,9 @@ public:
 	//获得当前行列
 	RCPair GetRC()const { return RCPair(row, col); }
 	//设置行
-	int SetRow(int r) { row = r; }
+	void SetRow(int r) { row = r; }
 	//设置列
-	int SetCol(int c) { col = c; }
+	void SetCol(int c) { col = c; }
 	//获得行
 	int GetRow()const { return row; }
 	//获得列

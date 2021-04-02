@@ -17,14 +17,7 @@ Object::~Object() {
 
 //获得名字，方便输出
 string Object::GetName()const {
-	switch (mytype)
-	{
-	case Plant_t:return string("Plant"); break;
-	case Zombie_t:return string("Zombie"); break;
-	case Bullet_t:return string("*"); break;//其实这行没用，我没用Bullet继承Object
-	default:
-		break;
-	}
+	return string("Plant");
 }
 
 

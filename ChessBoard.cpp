@@ -10,12 +10,12 @@ ChessBoard::ChessBoard()
 	square_height(SQUARE_HEIGHT),//格子竖直间距
 	square_width(SQUARE_WIDTH)//格子水平间距
 {
-	for (int i = 0; i < maxrow; i++) {//对行列数组初始化
+	for (int i = 0; i < maxrow+2; i++) {//对行列数组初始化
 		vector<Object*> Orow;
 		vector<Bullet*> Brow;
 		yard.push_back(Orow);
 		bulletyard.push_back(Brow);
-		for (int j = 0; j < maxcol; j++) {
+		for (int j = 0; j < maxcol+5; j++) {
 			//初始应该全是nullptr，要初始化两个yard！！！
 			Object* p = nullptr;
 			Bullet* bp = nullptr;
@@ -49,8 +49,11 @@ ChessBoard::~ChessBoard() {
 
 //添加植物
 bool ChessBoard::AddPlant(AbstractPlant* plant,int row,int col) {
+	plant->SetRow(row);
+	plant->SetCol(col);
 	if (yard[row][col] == nullptr) {
 		yard[row][col] = plant;
+		return true;
 	}
 	else return false;
 }

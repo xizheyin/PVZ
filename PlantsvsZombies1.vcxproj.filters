@@ -57,6 +57,12 @@
     <ClCompile Include="Attack.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Shop.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SunFlower.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractPlant.h">
@@ -96,6 +102,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Attack.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Shop.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SunFlower.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

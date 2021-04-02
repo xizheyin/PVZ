@@ -10,13 +10,6 @@ using namespace std;
 class ChessBoard
 {
 public:
-	struct Pos {
-		int x, y;
-		Pos(int _x, int _y) { x = _x; y = _y; }
-	};
-	//获得实际位置，是（x，y）二元组
-	Pos GetPos(int row, int col) { return Pos(col * square_width, 2 + row * square_height); }
-	
 	
 	//构造函数
 	ChessBoard();

@@ -2,6 +2,7 @@
 
 
 #include"AbstractPlant.h"
+#include"Attack.h"
 
 class SunFlower :
 	public AbstractPlant

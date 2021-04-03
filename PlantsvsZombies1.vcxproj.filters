@@ -57,10 +57,13 @@
     <ClCompile Include="Attack.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Shop.cpp">
+    <ClCompile Include="SunFlower.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="SunFlower.cpp">
+    <ClCompile Include="UI.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PlantShop.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -104,10 +107,13 @@
     <ClInclude Include="Attack.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Shop.h">
+    <ClInclude Include="SunFlower.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="SunFlower.h">
+    <ClInclude Include="UI.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PlantShop.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

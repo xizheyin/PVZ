@@ -4,29 +4,35 @@
 
 //更新棋盘上生物的状态（开始攻击）
 //让棋盘上的生物进行攻击
-void GameControl::UpdateChessbd(ChessBoard* chessbd) {
+void GameControl::UpdateChessbd(ChessBoard* chessbd,PlantShop* pshop) {
 
 	//对棋盘上所有方格进行遍历
 	for (int i = 0; i < ROW_NUM; i++) {
 		for (int j = 0; j < COL_NUM; j++) {
 
+
+
 			//遍历所有子弹
 			Bullet* blt = chessbd->GetBullet(i, j);
 			if (blt != nullptr)BulletControl(blt, chessbd);
 			
+
+
 			//遍历所有生物
 			Object* obj = chessbd->GetObject(i, j);//获得i行j列的生物
 			if (obj == nullptr)continue;
 			switch (obj->GetType())
 			{
+			
 			case Object::Plant_t://如果生物是植物的话，那么就转进植物的控制模块
-				PlantControl(obj,chessbd);
+				PlantControl(obj,chessbd,pshop);
 				break;
 			case Object::Zombie_t://如果生物是僵尸的话，那么转进僵尸的控制模块
 				ZombieControl(obj,chessbd);
 				break;
 			default:
 				break;
+			
 			}
 
 
@@ -35,15 +41,20 @@ void GameControl::UpdateChessbd(ChessBoard* chessbd) {
 }
 
 //控制植物攻击，目前只有豌豆射手
-void GameControl::PlantControl(Object* obj,ChessBoard* chessbd) {
-	//RCPair rc = obj->GetRC();
+void GameControl::PlantControl(Object* obj,ChessBoard* chessbd,PlantShop* pshop) {
+	//来获得攻击对象
 	Attack attack=obj->AttackEnemy(chessbd->GetTime());
+	//如果发现攻击对象啥也不是就return
 	if (attack.GetAttackType() == Attack::None)return;
 	switch (attack.GetAttackType())
 	{
+
 	case Attack::PeaShooter:
 		chessbd->AddBullet(attack.GetBullet());
 		break;
+	case Attack::SunFlower:
+		pshop->AddSun(attack.GetATK());
+
 	default:
 		break;
 	}
@@ -54,20 +65,20 @@ void GameControl::PlantControl(Object* obj,ChessBoard* chessbd) {
 void GameControl::ZombieControl(Object* obj,ChessBoard* chessbd) {
 	Attack attack = obj->AttackEnemy(chessbd->GetTime());
 	RCPair rc = obj->GetRC();
-	int ATK = 0;
 	Object* enemy = nullptr;
 	switch (attack.GetAttackType())
 	{
-	case Attack::Zombie:
-		ATK = attack.GetATK();
+
+	case Attack::NormalZombie:
 		if (rc.col == 0)return;
 		enemy = chessbd->GetObject(rc.row, rc.col-1);//找到前面的植物，
 		if (enemy != nullptr) {
 			if (enemy->GetType() == Object::Plant_t) {
-				enemy->Isattacked(ATK);
+				enemy->Isattacked(attack.GetATK());
 			}
 		}
 		break;
+
 
 	default:
 		break;

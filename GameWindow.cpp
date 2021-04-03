@@ -7,16 +7,20 @@ GameWindow::GameWindow()
 	:
 	chessbd(new ChessBoard()),
 	gamectrl(new GameControl()),
-	shop(new Shop())
+	pshop(new PlantShop()),
+	ui(new UI())
+
 {
 
 }
 
 //析构函数
 GameWindow::~GameWindow() {
+	//分别析构
 	delete chessbd;
 	delete gamectrl;
-	delete shop;
+	delete pshop;
+	delete ui;
 }
 
 //游戏函数，通过一个循环，每次更新棋盘和刷新屏幕
@@ -24,7 +28,7 @@ void GameWindow::Play() {
 	while (1) {
 		if (_kbhit()) {
 			if (_getch() == 'b') {
-				shop->BuyPlant(chessbd);
+				ui->BuyPlant(chessbd, pshop);
 			}
 		}
 		this->Update();
@@ -35,7 +39,7 @@ void GameWindow::Play() {
 
 //更新函数，利用gamectrl来控制chessbd
 void GameWindow::Update() {
-	gamectrl->UpdateChessbd(chessbd);//对植物等Object状态进行更新
+	gamectrl->UpdateChessbd(chessbd,pshop);//对植物等Object状态进行更新
 	bool flag = chessbd->Update();//棋盘的内容进行更新
 	if (!flag)GameOver();
 }
@@ -43,7 +47,9 @@ void GameWindow::Update() {
 //刷新屏幕
 void GameWindow::Show() {
 	system("cls");
-	chessbd->Show();//棋盘显示
+	//chessbd->Show();//棋盘显示
+	ui->ShowChessboard(chessbd);
+	ui->ShowInfo(chessbd, pshop);
 }
 
 

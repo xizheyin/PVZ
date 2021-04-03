@@ -16,7 +16,8 @@ public:
 		Plant,
 		Zombie,
 		PeaShooter,
-		NormalZombie
+		NormalZombie,
+		SunFlower
 	};
 
 	Attack(int _attacktype) { 

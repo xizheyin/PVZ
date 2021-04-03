@@ -69,32 +69,7 @@ void ChessBoard::AddBullet(Bullet* blt) {
 	bulletyard[blt->GetRow()][blt->GetCol()] = blt;
 }
 
-//显示函数
-void ChessBoard::Show() {
-	ios::sync_with_stdio(false);
-	//cin.tie(0);
-	for (int i = 0; i < 4; i++) {//分割线
-		cout << "*****************************************************************************" << endl << endl << endl << endl;
-	}
-	//Update();//更新状态
-	set_std_pos(0, 1);
-	for (int i = 0; i < maxrow; i++) {//显示存在的物体的名字
-		for (int j = 0; j < maxcol; j++) {
-			Pos pos = GetPos(i, j);
-			set_std_pos(pos.x,pos.y);
-			if (yard[i][j] != nullptr) {
-				cout<<yard[i][j]->GetName();//输出植物和僵尸
-			}
-			else {
-				//cout << "N";
-			}
-			set_std_pos(pos.x, pos.y);
-			if (bulletyard[i][j] != nullptr) {
-				cout << "*";//输出子弹！
-			}
-		}
-	}
-}
+
 //更新状态
 bool ChessBoard::Update() {
 	//每次更新时候都要让时间加1
@@ -197,3 +172,5 @@ void ChessBoard::CreateZombie() {
 		yard[rc.row][rc.col] = obj;
 	}
 }
+
+

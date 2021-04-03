@@ -19,6 +19,10 @@ const int TIME_GAP_CREATE_ZOMBIE = 10;
 //植物攻击gap
 const int TIME_GAP_PEASHOOTER_ATTACK = 3;
 
+//产生阳光gap
+const int TIME_GAP_CREATESUN = 4;
+
+//初始化阳光数目
 const int INIT_SUN = 500;
 
 //设置颜色

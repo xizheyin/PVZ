@@ -15,8 +15,7 @@ public:
 	ChessBoard();
 	//析构函数
 	~ChessBoard();
-	//显示函数
-	void Show();
+	
 	//更新状态
 	bool Update();
 	//在某位置添加植物，如果不行返回false
@@ -37,6 +36,9 @@ public:
 	void ClearBullet(int r, int c);
 	//获得时间
 	unsigned int GetTime()const { return timecounter; }
+	//获取分数
+	int GetScore()const { return score; }
+
 private:
 	//清除当前行列的Obj
 	void ClearObj(int i,int j);
@@ -51,6 +53,9 @@ private:
 
 	void TimeUp();
 	
+	void ScoreUp() { score++; }
+
+	int score;
 
 	unsigned int timecounter;
 

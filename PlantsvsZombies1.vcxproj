@@ -153,8 +153,9 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="OptionWindow.cpp" />
     <ClCompile Include="PeaShooter.cpp" />
-    <ClCompile Include="Shop.cpp" />
+    <ClCompile Include="PlantShop.cpp" />
     <ClCompile Include="SunFlower.cpp" />
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractPlant.h" />
@@ -170,8 +171,9 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="OptionWindow.h" />
     <ClInclude Include="PeaShooter.h" />
-    <ClInclude Include="Shop.h" />
+    <ClInclude Include="PlantShop.h" />
     <ClInclude Include="SunFlower.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

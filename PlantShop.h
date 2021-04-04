@@ -7,6 +7,17 @@
 class PlantShop
 {
 public:
+	enum Type {
+		None_t,
+		Plant_t,
+		Zombie_t,
+		PeaShooter_t,
+		NormalZombie_t,
+		SunFlower_t
+	};
+
+
+
 	PlantShop();
 	~PlantShop();
 	
@@ -14,6 +25,10 @@ public:
 	void AddSun(int x) { sun += x; }
 	//ªÒ»°—Ùπ‚
 	int GetSun()const { return sun; }
+
+	void SubSun(Type type);
+
+	bool CheckEnough(Type type);
 
 	bool SettlePlant(Object* obj, ChessBoard* chessbd, int r, int c);
 

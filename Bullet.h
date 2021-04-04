@@ -30,7 +30,7 @@ private:
 	int ATK;
 	//行，列
 	int row,col;
-	//子弹卒读
+	//子弹速度
 	int speed;
 };
 

@@ -55,17 +55,26 @@ void UI::BuyPlant(ChessBoard* chessbd, PlantShop* pshop) {
 	cin >> n;
 	Object* obj = nullptr;
 	RCPair rcp(-1,-1);
+	bool Success = false;
 	if (Confirm(n)) {//是否确认购买
 		rcp=SelectArea(chessbd);
 		switch (n)
 		{
 		case 1://太阳花
 			obj = new SunFlower(10);//hp是10
-			pshop->SettlePlant(obj, chessbd, rcp.row, rcp.col);
+			if (pshop->CheckEnough(PlantShop::SunFlower_t)) {
+				Success=pshop->SettlePlant(obj, chessbd, rcp.row, rcp.col);
+				if(Success)pshop->SubSun(PlantShop::SunFlower_t);
+				return;
+			}
 			break;
 		case 2://豌豆射手
 			obj = new PeaShooter(10);//利用默认参数列表，后续设置位置
-			pshop->SettlePlant(obj, chessbd, rcp.row, rcp.col);
+			if (pshop->CheckEnough(PlantShop::PeaShooter_t)) {
+				Success=pshop->SettlePlant(obj, chessbd, rcp.row, rcp.col);
+				if(Success)pshop->SubSun(PlantShop::PeaShooter_t);
+				return;
+			}
 			break;
 		default:
 			WrongInput();//错误输入，显示相关信息并且重新进入
@@ -73,12 +82,8 @@ void UI::BuyPlant(ChessBoard* chessbd, PlantShop* pshop) {
 			break;
 		}
 	}
-	else {
-		BuyPlant(chessbd,pshop);
-		return;
-	}
-
-
+	BuyPlant(chessbd,pshop);
+	return;
 }
 
 //错误信息提示

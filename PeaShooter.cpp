@@ -16,7 +16,7 @@ PeaShooter::~PeaShooter() {
 //豌豆射手的攻击函数
 //设置一个ATK为1的子弹！
 Attack PeaShooter::AttackEnemy(int time) {
-	if (time % TIME_GAP_PEASHOOTER_ATTACK) {
+	if (time % TIME_GAP_PEASHOOTER_ATTACK==0) {
 		Attack atk(Attack::PeaShooter);
 		Bullet* blt = new Bullet(1, row, col);
 		atk.SetBullet(blt);

@@ -80,6 +80,7 @@ bool ChessBoard::Update() {
 		for (int j = 0; j < maxcol; j++) {
 			if (yard[i][j] != nullptr) {
 				if (yard[i][j]->GetStatus() == Object::Dead) {//检查是不是死了，死了就清除
+					if (yard[i][j]->GetType() == Object::Zombie_t)ScoreUp();//检查僵尸死了吗，死了得分加1
 					ClearObj(i, j);
 					continue;
 				}

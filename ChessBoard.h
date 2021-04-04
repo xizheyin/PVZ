@@ -34,14 +34,17 @@ public:
 	Bullet* GetBullet(int r, int c) { return bulletyard[r][c]; }
 	//清除行列的子弹
 	void ClearBullet(int r, int c);
+	//清除当前行列的Obj
+	void ClearObj(int i, int j);
+
 	//获得时间
 	unsigned int GetTime()const { return timecounter; }
 	//获取分数
 	int GetScore()const { return score; }
 
+
 private:
-	//清除当前行列的Obj
-	void ClearObj(int i,int j);
+
 	//查看僵尸是否适合前移
 	bool CheckPos(int r,int c);
 	//僵尸进行移动

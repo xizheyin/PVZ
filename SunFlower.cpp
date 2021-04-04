@@ -18,9 +18,10 @@ SunFlower::~SunFlower() {
 
 Attack SunFlower::AttackEnemy(int time) {
 	
-	if (time % TIME_GAP_CREATESUN) {
+	if (time % TIME_GAP_CREATESUN==0) {
 		Attack atk(Attack::SunFlower);
-		atk.SetATK(1);
+		atk.SetATK(50);
+		return atk;
 	}
 	return Attack(Attack::None);
 }

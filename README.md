@@ -18,7 +18,7 @@
 
 首先我画了一张UML图，方便下面的模块理解
 
-![img](https://github.com/changanyyy/Plants_vs_Zombies_Console/markdown/AA2EC11CA0AB382F06E81E9253A3A047.png)
+![img](markdown/AA2EC11CA0AB382F06E81E9253A3A047.png)
 
 
 

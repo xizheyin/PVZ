@@ -15,24 +15,26 @@ void UI::ShowChessboard(ChessBoard* chessbd) {
 	ios::sync_with_stdio(false);
 	//cin.tie(0);
 	for (int i = 0; i < 4; i++) {//分割线
-		cout << "*****************************************************************************" << endl << endl << endl << endl;
+		cout << "************************************************************************************************" << endl << endl << endl << endl;
 	}
 	set_std_pos(0, 1);
 	Object* obj=nullptr;
 	Bullet* blt = nullptr;
 	for (int i = 0; i < ROW_NUM; i++) {//显示存在的物体的名字
 		for (int j = 0; j < COL_NUM; j++) {
-
-			obj = chessbd->GetObject(i, j);
 			Pos pos = GetPos(i, j);
-			set_std_pos(pos.x, pos.y);
-			if (obj != nullptr) {
-				cout << obj->GetName();//输出植物和僵尸
+			for (int k = 0; k < chessbd->GetPlotSize(i,j); k++) {
+				obj = nullptr;
+				obj = chessbd->GetObject(i, j, k);
+				
+				set_std_pos(pos.x, pos.y);
+				if (obj != nullptr) {
+					cout << obj->GetName();//输出植物和僵尸
+				}
+				else {
+					//cout << "N";
+				}
 			}
-			else {
-				//cout << "N";
-			}
-
 			blt = chessbd->GetBullet(i, j);
 			set_std_pos(pos.x, pos.y);
 			if (blt != nullptr) {

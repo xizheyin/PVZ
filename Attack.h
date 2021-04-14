@@ -11,40 +11,38 @@
 class Attack
 {
 public:
-	enum {
+	enum {//攻击类型，到时候control模块根据攻击类型确定具体的攻击
 		None,
-		Plant,
-		Zombie,
 		PeaShooter,
 		NormalZombie,
 		SunFlower
 	};
 
-	Attack(int _attacktype) { 
-		attacktype = _attacktype;
-	}
-	Attack(const Attack& rh) {
-		attacktype = rh.attacktype;
-		bullet = rh.bullet;
-		ATK = rh.ATK;
-	}
-	Attack& operator=(const Attack& rh) {
-		attacktype = rh.attacktype;
-		bullet = rh.bullet;
-	}
-	//设置子弹，某个植物有子弹
-	void SetBullet(Bullet* _bullet) { bullet = _bullet; }
-	//获取子弹，由control模块发出！
-	Bullet* GetBullet() { return bullet; }
+	//构造函数，参数是攻击类型
+	Attack(int _attacktype);
+
+	//拷贝构造函数
+	Attack(const Attack& rh);
+
+	//赋值函数
+	Attack& operator=(const Attack& rh);
+
 	//获取攻击类型
 	int GetAttackType()const { return attacktype; }
+
+	//设置子弹，某个植物有子弹
+	void SetBullet(Bullet* _bullet) { bullet = _bullet; }
+	
+	//获取子弹，由control模块发出！
+	Bullet* GetBullet() { return bullet; }
+
 	//设置攻击值
 	void SetATK(int atk) { ATK = atk; }
+
 	//获得攻击值
 	int GetATK()const { return ATK; }
 
 private:
-
 	//攻击类型
 	int attacktype;
 	//攻击值

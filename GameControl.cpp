@@ -16,26 +16,25 @@ void GameControl::UpdateChessbd(ChessBoard* chessbd,PlantShop* pshop) {
 			Bullet* blt = chessbd->GetBullet(i, j);
 			if (blt != nullptr)BulletControl(blt, chessbd);
 			
+			for (int k = 0; k < chessbd->GetPlotSize(i, j); k++) {
 
+				//遍历所有生物
+				Object* obj = chessbd->GetObject(i, j, k);//获得i行j列的生物
+				switch (obj->GetType())
+				{
 
-			//遍历所有生物
-			Object* obj = chessbd->GetObject(i, j);//获得i行j列的生物
-			if (obj == nullptr)continue;
-			switch (obj->GetType())
-			{
-			
-			case Object::Plant_t://如果生物是植物的话，那么就转进植物的控制模块
-				PlantControl(obj,chessbd,pshop);
-				break;
-			case Object::Zombie_t://如果生物是僵尸的话，那么转进僵尸的控制模块
-				ZombieControl(obj,chessbd);
-				break;
-			default:
-				break;
-			
+				case Object::Plant_t://如果生物是植物的话，那么就转进植物的控制模块
+					PlantControl(obj, chessbd, pshop);
+					break;
+				case Object::Zombie_t://如果生物是僵尸的话，那么转进僵尸的控制模块
+					ZombieControl(obj, chessbd);
+					break;
+				default:
+					break;
+
+				}
+
 			}
-
-
 		}
 	}
 }
@@ -71,7 +70,7 @@ void GameControl::ZombieControl(Object* obj,ChessBoard* chessbd) {
 
 	case Attack::NormalZombie:
 		if (rc.col == 0)return;
-		enemy = chessbd->GetObject(rc.row, rc.col-1);//找到前面的植物，
+		if (chessbd->GetPlotSize(rc.row, rc.col - 1) > 0)enemy = chessbd->GetObject(rc.row, rc.col - 1, 0);//找到前面的植物，
 		if (enemy != nullptr) {
 			if (enemy->GetType() == Object::Plant_t) {
 				enemy->Isattacked(attack.GetATK());
@@ -89,14 +88,17 @@ void GameControl::ZombieControl(Object* obj,ChessBoard* chessbd) {
 void GameControl::BulletControl(Bullet* blt, ChessBoard* chessbd) {
 	int r = blt->GetRow();
 	int c = blt->GetCol();
-	Object* obj = chessbd->GetObject(r,c);//当前的
+	
+	Object* obj = nullptr;
+	if (chessbd->GetPlotSize(r, c ) > 0)obj = chessbd->GetObject(r, c , 0);
 	if (obj != nullptr) {
 		if (obj->GetType() == Object::Zombie_t) {
 			obj->Isattacked(blt->GetATK());
 		}
 		chessbd->ClearBullet(r, c);
 	}
-	obj = chessbd->GetObject(r, c + 1);//子弹前面的一个
+	obj = nullptr;
+	if (chessbd->GetPlotSize(r, c + 1) > 0)obj = chessbd->GetObject(r, c + 1, 0);//子弹前面的一个
 	if (obj != nullptr) {
 		if (obj->GetType() == Object::Zombie_t) {
 			obj->Isattacked(blt->GetATK());

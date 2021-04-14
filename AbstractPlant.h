@@ -1,6 +1,11 @@
 #pragma once
 #include"Object.h"
 
+
+//继承物体类，里面存放了有关植物共性的属性
+
+
+
 class AbstractPlant
 	:public Object
 {

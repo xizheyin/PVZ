@@ -11,7 +11,9 @@ public:
     //重定义攻击函数
     Attack AttackEnemy(int time);
     //重定义获取姓名函数
-    string GetName()const { return string("PeaShooter"); }
+    string GetName()const { return string("豌豆射手"); }
+
+    void Update(){}
 private:
     int timegap;
 };

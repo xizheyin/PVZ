@@ -12,34 +12,33 @@ ChessBoard::ChessBoard()
 	timecounter(0)//计时器
 {
 	for (int i = 0; i < maxrow+2; i++) {//对行列数组初始化
-		vector<Object*> Orow;
-		vector<Bullet*> Brow;
+		vector<vector<Object*>>Orow;//这是一行地块，一行里的每个地块都有上述的一个vector
+		vector<Bullet*> Brow;//子弹行
+		
 		yard.push_back(Orow);
 		bulletyard.push_back(Brow);
-		for (int j = 0; j < maxcol+5; j++) {
-			//初始应该全是nullptr，要初始化两个yard！！！
-			Object* p = nullptr;
-			Bullet* bp = nullptr;
-			//Object* p = new Object(0,100);//*********************************************************
-			yard[i].push_back(p);
-			bulletyard[i].push_back(bp);
+		for (int j = 0; j < maxcol + 5; j++) {
+			vector<Object*> objvec;//每一个地块都有一个vector，因为需要存放多个僵尸
+			yard[i].push_back(objvec);//让行地块每一列都有一个空向量
+
+			Bullet* bullet = nullptr;
+			bulletyard[i].push_back(bullet);//让子弹行的每一列都有一个nullptr
 		}
 	}
-	/*PeaShooter* ps = new PeaShooter(10, 1, 0);
-	yard[1][0] = ps;
-	NormalZombie* pz = new NormalZombie(10, 1);
-	RCPair rc = pz->GetRC();
-	yard[rc.row][rc.col] = pz;*/
 }
 
 //析构
 ChessBoard::~ChessBoard() {
 	for (int i = 0; i < maxrow; i++) {//释放所有植物和僵尸的空间
 		for (int j = 0; j < maxcol; j++) {
-			if (yard[i][j] != nullptr) {
-				delete yard[i][j];//释放植物和僵尸
-				yard[i][j] = nullptr;
+			
+			for (int k = 0; k < yard[i][j].size(); k++) {
+				if (yard[i][j][k] != nullptr) {
+					delete yard[i][j][k];//释放植物和僵尸
+					yard[i][j][k] = nullptr;
+				}
 			}
+
 			if (bulletyard[i][j] != nullptr) {
 				delete bulletyard[i][j];//释放子弹
 				bulletyard[i][j] = nullptr;
@@ -52,8 +51,9 @@ ChessBoard::~ChessBoard() {
 bool ChessBoard::AddPlant(AbstractPlant* plant,int row,int col) {
 	plant->SetRow(row);
 	plant->SetCol(col);
-	if (yard[row][col] == nullptr) {
-		yard[row][col] = plant;
+	//如果这个地块向量是空的话，就push进去植物,因为植物不能重叠放，植物和僵尸不能重叠放
+	if (yard[row][col].empty()) {
+		yard[row][col].push_back(plant);
 		return true;
 	}
 	else return false;
@@ -61,7 +61,7 @@ bool ChessBoard::AddPlant(AbstractPlant* plant,int row,int col) {
 
 //添加僵尸
 void ChessBoard::AddZombie(AbstractZombie* zombie,int row) {//添加一个僵尸
-	yard[row][maxcol - 1] = zombie;
+	yard[row][maxcol - 1].push_back(zombie);
 }
 
 
@@ -75,21 +75,26 @@ bool ChessBoard::Update() {
 	//每次更新时候都要让时间加1
 	TimeUp();
 	CreateZombie();
-	//检查每一个Obj
+	//对i行j列进行遍历
 	for (int i = 0; i < maxrow; i++) {
 		for (int j = 0; j < maxcol; j++) {
-			if (yard[i][j] != nullptr) {
-				if (yard[i][j]->GetStatus() == Object::Dead) {//检查是不是死了，死了就清除
-					if (yard[i][j]->GetType() == Object::Zombie_t)ScoreUp();//检查僵尸死了吗，死了得分加1
-					ClearObj(i, j);
+			
+			for (int k = yard[i][j].size() - 1; k >= 0; k--) {
+				if (yard[i][j][k]->GetStatus() == Object::Dead) {//如果我遍历的这个死了
+					if (yard[i][j][k]->GetType() == Object::Zombie_t)ScoreUp();
+					ClearObj(i, j, k);
 					continue;
 				}
-				if (yard[i][j]->GetType() == Object::Zombie_t) {//检查是不是僵尸，僵尸可以移动
-					if (j == 0) return false;//如果僵尸越界
-					ZombieMove(i, j);
-				}
-				
 			}
+
+
+			for (int k = yard[i][j].size() - 1; k >= 0; k--) {//检查完是不是死掉之后，检查是不是僵尸，是就移动
+				if (yard[i][j][k]->GetType() == Object::Zombie_t) {
+					if (j == 0)return false;//如果越界就游戏结束
+					ZombieMove(i, j, k);
+				}
+			}
+
 		}
 	}
 
@@ -104,10 +109,9 @@ bool ChessBoard::Update() {
 }
 
 //清除Obj
-void ChessBoard::ClearObj(int i, int j) {
-	Object* del = yard[i][j];//如果死了就清除！
-	yard[i][j] = nullptr;
-	delete del;
+void ChessBoard::ClearObj(int i, int j,int k) {
+	delete yard[i][j][k];//释放（*it）指向的空间
+	yard[i][j].erase(yard[i][j].begin()+k);//删除it
 }
 
 //清除子弹
@@ -118,23 +122,23 @@ void ChessBoard::ClearBullet(int r, int c) {
 }
 
 //检查僵尸是否适合移动到这个位置
-bool ChessBoard::CheckPos(int r,int c) {
+bool ChessBoard::CheckPos(int r,int c) {//当空或者是僵尸，僵尸适合移动到这里
 	if (c < 0)return false;
-	if (yard[r][c] == nullptr)return true;
+	if (yard[r][c].empty())return true;
+	else if (yard[r][c][0]->GetType() == Object::Zombie_t)return true;
 	else return false;
-
 }
 
-void ChessBoard::ZombieMove(int i,int j) {
-	AbstractZombie* zmb = static_cast<AbstractZombie*>(yard[i][j]);
+void ChessBoard::ZombieMove(int i,int j, int k) {
+	AbstractZombie* zmb = static_cast<AbstractZombie*>(yard[i][j][k]);
 	int currow = i;
 	int curcol = j;
 	int nextrow = currow;
 	int nextcol = curcol - zmb->GetSpeed();
 	if (CheckPos(nextrow, nextcol)) {//当僵尸可以移动的话，就移动
 		zmb->SetRC(nextrow, nextcol);//修改僵尸位置
-		yard[nextrow][nextcol] = yard[currow][curcol];//修改棋盘
-		yard[currow][curcol] = nullptr;
+		yard[nextrow][nextcol].push_back(zmb);//修改棋盘
+		yard[currow][curcol].erase(yard[i][j].begin() + k);
 	}
 }
 
@@ -170,7 +174,7 @@ void ChessBoard::CreateZombie() {
 		}
 
 		RCPair rc = obj->GetRC();
-		yard[rc.row][rc.col] = obj;
+		yard[rc.row][rc.col].push_back(obj);
 	}
 }
 

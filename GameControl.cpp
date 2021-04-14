@@ -91,21 +91,25 @@ void GameControl::BulletControl(Bullet* blt, ChessBoard* chessbd) {
 	int r = blt->GetRow();
 	int c = blt->GetCol();
 	
+	bool flag = false;
+
 	Object* obj = nullptr;
-	if (chessbd->GetPlotSize(r, c ) > 0)obj = chessbd->GetObject(r, c , 0);
+	if (chessbd->GetPlotSize(r, c) > 0) obj = chessbd->GetObject(r, c, 0);
 	if (obj != nullptr) {
 		if (obj->GetType() == Object::Zombie_t) {
 			obj->Isattacked(blt->GetATK());
+			flag = true;
 		}
-		chessbd->ClearBullet(r, c);
 	}
 	obj = nullptr;
 	if (chessbd->GetPlotSize(r, c + 1) > 0)obj = chessbd->GetObject(r, c + 1, 0);//子弹前面的一个
 	if (obj != nullptr) {
 		if (obj->GetType() == Object::Zombie_t) {
 			obj->Isattacked(blt->GetATK());
+			flag = true;
 		}
-		chessbd->ClearBullet(r, c);
 	}
+	if(flag)chessbd->ClearBullet(r, c);
+
 }
 

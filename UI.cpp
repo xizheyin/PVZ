@@ -35,6 +35,7 @@ void UI::ShowChessboard(ChessBoard* chessbd) {
 			if (blt != nullptr) {
 				cout << "¡ñ";//Êä³ö×Óµ¯£¡
 			}
+			//Sleep(1);
 
 			//if (chessbd->GetPlotSize(i, j) == 0) {
 			//	continue;

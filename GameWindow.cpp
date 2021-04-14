@@ -25,11 +25,17 @@ GameWindow::~GameWindow() {
 
 //游戏函数，通过一个循环，每次更新棋盘和刷新屏幕
 void GameWindow::Play() {
+	char c;
 	while (1) {
 		if (_kbhit()) {
-			if (_getch() == 'b') {
+			c = _getch();
+			if (c == 'b') {
 				ui->BuyPlant(chessbd, pshop);
 			}
+			else if(c=='x'){//如果暂停
+				Pause();
+			}
+			
 		}
 		this->Update();
 		this->Show();
@@ -46,10 +52,18 @@ void GameWindow::Update() {
 
 //刷新屏幕
 void GameWindow::Show() {
-	system("cls");
-	//chessbd->Show();//棋盘显示
 	ui->ShowChessboard(chessbd);
 	ui->ShowInfo(chessbd, pshop);
+}
+
+void GameWindow::Pause() {
+	while (1) {
+		if (_kbhit()) {
+			char c = _getch();
+			if (c == 'x')break;
+		}
+		Sleep(300);
+	}
 }
 
 

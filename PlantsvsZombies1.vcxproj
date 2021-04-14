@@ -150,6 +150,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="NormalZombie.cpp" />
+    <ClCompile Include="NutWall.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="OptionWindow.cpp" />
     <ClCompile Include="PeaShooter.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="GameWindow.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="NormalZombie.h" />
+    <ClInclude Include="NutWall.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="OptionWindow.h" />
     <ClInclude Include="PeaShooter.h" />

@@ -23,6 +23,7 @@ void MainWindow::show() {
 	while (cin >> n) {
 		switch (n) {
 		case 1://游戏窗口
+			system("cls");
 			gamewindow -> Play();break;
 		case 2://还没想好？
 			break;

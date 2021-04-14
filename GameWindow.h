@@ -22,6 +22,8 @@ public:
 	//Ë¢ÐÂÆÁÄ»
 	void Show();
 	
+	void Pause();
+
 	void GameOver();
 
 	void PlayMusic();

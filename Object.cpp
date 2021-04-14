@@ -8,6 +8,7 @@ Object::Object(int ty, int Hp,int r,int c) {
 	myhp = Hp;
 	row = r;
 	col = c;
+	myhpmax = Hp;
 }
 
 //Îö¹¹º¯Êý

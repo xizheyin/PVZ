@@ -25,6 +25,9 @@ void PlantShop::SubSun(Type type) {
 	case PlantShop::SunFlower_t:
 		sun -= 75;
 		break;
+	case PlantShop::NutWall_t:
+		sun -= 60;
+		break;
 	default:
 		break;
 	}
@@ -40,11 +43,14 @@ bool PlantShop::CheckEnough(Type type) {
 	case SunFlower_t:
 		cost = 75;
 		break;
+	case NutWall_t:
+		cost = 60;
+		break;
 	default:
 		break;
 	}
-	if (sun - cost >= 0)return true;
-	else false;
+	if ((sun - cost) >= 0)return true;
+	else return false;
 }
 
 

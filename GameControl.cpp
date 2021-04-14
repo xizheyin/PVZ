@@ -53,7 +53,9 @@ void GameControl::PlantControl(Object* obj,ChessBoard* chessbd,PlantShop* pshop)
 		break;
 	case Attack::SunFlower:
 		pshop->AddSun(attack.GetATK());
-
+		break;
+	case Attack::NutWall:
+		break;
 	default:
 		break;
 	}

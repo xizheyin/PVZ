@@ -1,6 +1,7 @@
 #pragma once
 #include"PeaShooter.h"
 #include"SunFlower.h"
+#include"NutWall.h"
 #include"ChessBoard.h"
 
 
@@ -13,7 +14,8 @@ public:
 		Zombie_t,
 		PeaShooter_t,
 		NormalZombie_t,
-		SunFlower_t
+		SunFlower_t,
+		NutWall_t
 	};
 
 

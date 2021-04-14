@@ -21,6 +21,16 @@ void set_std_pos(int x, int y)
     SetConsoleCursorPosition(winHandle, pos);
 }
 
+void hide_std() {
+    HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_CURSOR_INFO CursorInfo;
+    GetConsoleCursorInfo(handle, &CursorInfo);//获取控制台光标信息
+    CursorInfo.bVisible = false; //隐藏控制台光标
+    SetConsoleCursorInfo(handle, &CursorInfo);//设置控制台光标状态
+
+}
+
+
 //利用row和col获得x和y
 Pos GetPos(int row, int col) { return Pos(1 + col * SQUARE_WIDTH, 2 + row * SQUARE_HEIGHT); }
 

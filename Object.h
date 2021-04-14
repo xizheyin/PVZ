@@ -43,6 +43,10 @@ public:
 	int GetRow()const { return row; }
 	//获得列
 	int GetCol()const { return col; }
+
+	int GetHp()const { return myhp; }
+	int GetMaxHp()const { return myhpmax; }
+
 	//攻击他人,纯虚函数，不同的植物僵尸需要重新定义！
 	virtual Attack AttackEnemy(int time) = 0;
 
@@ -56,6 +60,8 @@ public:
 protected:
 	//我的生命值
 	int myhp;
+	//
+	int myhpmax;
 	//我的种类，上面定义了枚举类型
 	Type mytype;
 	//我的状态，健康or死亡，最后根据这个进行清除植物和僵尸

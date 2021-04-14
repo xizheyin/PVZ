@@ -15,7 +15,8 @@ public:
 		None,
 		PeaShooter,
 		NormalZombie,
-		SunFlower
+		SunFlower,
+		NutWall
 	};
 
 	//构造函数，参数是攻击类型

@@ -17,7 +17,7 @@ const int MAX_KINDS_ZOMBIES = 1;
 const int TIME_GAP_CREATE_ZOMBIE = 10;
 
 //植物攻击gap
-const int TIME_GAP_PEASHOOTER_ATTACK = 3;
+const int TIME_GAP_PEASHOOTER_ATTACK = 2;
 
 //产生阳光gap
 const int TIME_GAP_CREATESUN = 20;
@@ -34,6 +34,8 @@ void reset_std_color();
 //设置光标位置
 void set_std_pos(int x, int y);
 
+//隐藏光标
+void hide_std();
 
 
 //结构体，行和列

@@ -21,7 +21,6 @@ public:
 	//**********************shopµÄUI
 	//¹ºÂòÖ²ÎïµÄUI
 	void BuyPlant(ChessBoard* chessbd, PlantShop* pshop);
-	void WrongInput();
 	bool Confirm(int n);
 	const RCPair SelectArea(ChessBoard* chessbd);
 	void PrintSelectBox(int r, int c);

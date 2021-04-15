@@ -35,13 +35,6 @@ void UI::ShowChessboard(ChessBoard* chessbd) {
 			if (blt != nullptr) {
 				cout << "●";//输出子弹！
 			}
-			//Sleep(1);
-
-			//if (chessbd->GetPlotSize(i, j) == 0) {
-			//	continue;
-			//	set_std_pos(pos.x, pos.y);
-			//	cout << "   "; 
-			//}
 			for (int k = 0; k < chessbd->GetPlotSize(i,j); k++) {
 				obj = nullptr;
 				obj = chessbd->GetObject(i, j, k);
@@ -121,9 +114,9 @@ const RCPair UI::SelectArea(ChessBoard* chessbd) {
 	int r = 0, c = 1;
 	Pos pos = GetPos(r, c);
 	set_std_pos(pos.x, pos.y);
+	this->ShowChessboard(chessbd);
 	while (1) {
-		Sleep(150);
-		this->ShowChessboard(chessbd);
+		
 		PrintSelectBox(r, c);
 		if (_kbhit())//如果有按键按下
 		{
@@ -163,6 +156,8 @@ const RCPair UI::SelectArea(ChessBoard* chessbd) {
 			default:
 				break;
 			}
+			this->ShowChessboard(chessbd);
+			PrintSelectBox(r, c);
 		}
 	}
 

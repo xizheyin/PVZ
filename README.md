@@ -83,9 +83,9 @@ private:
 	UI* ui;
 ```
 
-`GameControl`类主要用来控制棋盘上僵尸，植物，子弹的**攻击逻辑**。
+`GameControl`类主要用来控制棋盘上僵尸，植物，弹珠的**攻击逻辑**。
 
-`ChessBoard`类主要用来**存储棋盘上植物僵尸和子弹**，并且**控制他们的移动**。
+`ChessBoard`类主要用来**存储棋盘上植物僵尸和弹珠**，并且**控制他们的移动**。
 
 `PlantShop`类是商店，通过这个来进行植物的**交易逻辑**
 
@@ -131,7 +131,7 @@ void GameWindow::Play() {
 
 `gamectrl->UpdateChessbd`**控制棋盘上所有的物体进行攻击，更新所有生物的状态**
 
-`chessbd->Update`在对于攻击之后改变了状态的物体进行一系列处理，从棋盘上**添加或者删除**等（比如植物死了），并且处理一些关于子弹僵尸等的**移动**。值得注意的是`chessbd->Update()`会检查僵尸的状态，如果僵尸到达了边界，就会返回false，然后调用`GameOver`函数结束游戏。这里在结束游戏的时候有一个**小彩蛋**，就是会播放音乐。
+`chessbd->Update`在对于攻击之后改变了状态的物体进行一系列处理，从棋盘上**添加或者删除**等（比如植物死了），并且处理一些关于弹珠僵尸等的**移动**。值得注意的是`chessbd->Update()`会检查僵尸的状态，如果僵尸到达了边界，就会返回false，然后调用`GameOver`函数结束游戏。这里在结束游戏的时候有一个**小彩蛋**，就是会播放音乐。
 
 `Show`函数调用`UI`的显示函数，显示游戏的具体情况
 
@@ -206,19 +206,19 @@ void GameWindow::Show() {
 private:
 	//存储行列上的植物和僵尸
 	vector<vector<Object*>> yard;
-	//单独用一个子弹yard存储子弹
+	//单独用一个弹珠yard存储弹珠
 	vector<vector<Bullet*>> bulletyard;
 ```
 
 #### 成员函数
 
-下面几个成员函数用来添加和删除植物僵尸和子弹，是对外的接口，方便`GameControl`模块对它进行控制
+下面几个成员函数用来添加和删除植物僵尸和弹珠，是对外的接口，方便`GameControl`模块对它进行控制
 
 ```c++
 	Object* GetObject(int r, int c) { return yard[r][c]; }
-	//得到当前行列的子弹指针
+	//得到当前行列的弹珠指针
 	Bullet* GetBullet(int r, int c) { return bulletyard[r][c]; }
-	//清除行列的子弹
+	//清除行列的弹珠
 	void ClearBullet(int r, int c);
 	//清除当前行列的Obj
 	void ClearObj(int i, int j);
@@ -244,18 +244,18 @@ const int TIME_GAP_CREATESUN = 4;
 	void TimeUp();
 ```
 
-我还设置了几个函数用来控制僵尸和子弹的移动，对于没有死的僵尸，`GameControl`控制的是植物攻击和死亡的逻辑，而`Chessboard`则要控制没有死去的僵尸和子弹移动，并且死亡的僵尸或者越界的子弹进行清除（Delete）
+我还设置了几个函数用来控制僵尸和弹珠的移动，对于没有死的僵尸，`GameControl`控制的是植物攻击和死亡的逻辑，而`Chessboard`则要控制没有死去的僵尸和弹珠移动，并且死亡的僵尸或者越界的弹珠进行清除（Delete）
 
 ```c++
 	//查看僵尸是否适合前移
 	bool CheckPos(int r,int c);
 	//僵尸进行移动
 	void ZombieMove(int i, int j);
-	//子弹进行移动
+	//弹珠进行移动
 	void BulletMove(int i, int j);
 ```
 
-下面最关键的函数就是`Update`函数，它是棋盘状态变更的**关键函数**，基本逻辑就是遍历`Object`棋盘找到死亡的僵尸，然后清除他们，如果没死的话就让他们移动；再次遍历`Bullet`棋盘，找到越界子弹清除他们，没越界的子弹就进行移动
+下面最关键的函数就是`Update`函数，它是棋盘状态变更的**关键函数**，基本逻辑就是遍历`Object`棋盘找到死亡的僵尸，然后清除他们，如果没死的话就让他们移动；再次遍历`Bullet`棋盘，找到越界弹珠清除他们，没越界的弹珠就进行移动
 
 ```c++
 bool Update();
@@ -265,7 +265,7 @@ bool Update();
 
 #### 功能
 
-从上面我们可以看出，`ChessBoard`的关键功能是**对植物，僵尸还有子弹进行存储和逻辑移动**（其实移动也是存储的一部分），真正的攻击逻辑在`GameControl`（下面的那个模块），他们之间**很关键的交互是通过植物的状态**来进行！`GameControl`控制植物攻击之后，死亡的植物和僵尸将会变成`Dead`状态，然后`chessboard`进行`Update`的时候，通过检查每一个元素的状态来**清除或者移动**`Object`！通过这样一种方式，实现了**攻击和移动的分离**，也实现了**存储和控制的分离**，让模块划分更加清晰，方便拓展和更新！
+从上面我们可以看出，`ChessBoard`的关键功能是**对植物，僵尸还有弹珠进行存储和逻辑移动**（其实移动也是存储的一部分），真正的攻击逻辑在`GameControl`（下面的那个模块），他们之间**很关键的交互是通过植物的状态**来进行！`GameControl`控制植物攻击之后，死亡的植物和僵尸将会变成`Dead`状态，然后`chessboard`进行`Update`的时候，通过检查每一个元素的状态来**清除或者移动**`Object`！通过这样一种方式，实现了**攻击和移动的分离**，也实现了**存储和控制的分离**，让模块划分更加清晰，方便拓展和更新！
 
 
 
@@ -275,13 +275,13 @@ bool Update();
 
 #### 成员函数
 
-最关键的一个函数就是下面的函数，遍历棋盘上的所有僵尸，植物，子弹，并且调用他们的攻击函数`Attack AttackEnemy(int time)`这个函数返回一个`Attack`类的对象！（Attack类后面会讲到，里面包含了一些关于攻击的信息）
+最关键的一个函数就是下面的函数，遍历棋盘上的所有僵尸，植物，弹珠，并且调用他们的攻击函数`Attack AttackEnemy(int time)`这个函数返回一个`Attack`类的对象！（Attack类后面会讲到，里面包含了一些关于攻击的信息）
 
 ```c++
 	void UpdateChessbd(ChessBoard* chessbd,PlantShop* pshop);
 ```
 
-我对上述函数进行了进一步的封装，分别写了下面三个子函数，他们分别对植物，僵尸和子弹进行控制
+我对上述函数进行了进一步的封装，分别写了下面三个子函数，他们分别对植物，僵尸和弹珠进行控制
 
 ```c++
 void PlantControl(Object* obj, ChessBoard* chessbd,PlantShop* pshop);
@@ -292,7 +292,7 @@ void BulletControl(Bullet* blt, ChessBoard* chessbd);
 
 具体的处理原理是根据不同植物来定的，比如
 
-对豌豆射手攻击的处理就是添加一颗子弹，对于向日葵的处理就是在shop里面增加阳光，对于僵尸的处理就是让它攻击前面的植物，对于子弹的处理是让它攻击自己碰到的僵尸，并且清除自己！
+对豌豆射手攻击的处理就是添加一颗弹珠，对于向日葵的处理就是在shop里面增加阳光，对于僵尸的处理就是让它攻击前面的植物，对于弹珠的处理是让它攻击自己碰到的僵尸，并且清除自己！
 
 
 
@@ -315,7 +315,7 @@ void BulletControl(Bullet* blt, ChessBoard* chessbd);
 
 
 
-## 物体板块（植物僵尸子弹等）
+## 物体板块（植物僵尸弹珠等）
 
 ### 8.Object
 
@@ -433,15 +433,15 @@ AbstractZombie::AbstractZombie(int hp, int r)
     string GetName()const { return string("PeaShooter"); }
 ```
 
-其中攻击函数间隔一段时间装填一个子弹！
+其中攻击函数间隔一段时间装填一个弹珠！
 
 ```c++
 //豌豆射手的攻击函数
-//设置一个ATK为1的子弹！
+//设置一个ATK为1的弹珠！
 Attack PeaShooter::AttackEnemy(int time) {
-	if (time % TIME_GAP_PEASHOOTER_ATTACK==0) {//间隔时间才会发出真正的子弹
+	if (time % TIME_GAP_PEASHOOTER_ATTACK==0) {//间隔时间才会发出真正的弹珠
 		Attack atk(Attack::PeaShooter);
-		Bullet* blt = new Bullet(1, row, col);//装填子弹
+		Bullet* blt = new Bullet(1, row, col);//装填弹珠
 		atk.SetBullet(blt);
 		return atk;
 	}
@@ -454,14 +454,14 @@ Attack PeaShooter::AttackEnemy(int time) {
 
 ### 13.Bullet
 
-子弹类，豌豆射手发射的子弹，它具有如下变量：伤害值，行列，移动速度（一次移动几格）
+弹珠类，豌豆射手发射的弹珠，它具有如下变量：伤害值，行列，移动速度（一次移动几格）
 
 ```c++
-//子弹伤害值
+//弹珠伤害值
 int ATK;
 //行，列
 int row,col;
-//子弹卒读
+//弹珠卒读
 int speed;
 ```
 
@@ -497,18 +497,18 @@ Attack SunFlower::AttackEnemy(int time) {
 
 攻击值，一般是僵尸设定的
 
-##### 子弹bullet
+##### 弹珠bullet
 
-豌豆射手会添加自己的子弹
+豌豆射手会添加自己的弹珠
 
 #### 成员函数
 
 提供了一些接口，方便`GameControl`模块进行调用来实现具体攻击
 
 ```c++
-	//设置子弹，某个植物有子弹
+	//设置弹珠，某个植物有弹珠
 	void SetBullet(Bullet* _bullet) { bullet = _bullet; }
-	//获取子弹，由control模块发出！
+	//获取弹珠，由control模块发出！
 	Bullet* GetBullet() { return bullet; }
 	//获取攻击类型
 	int GetAttackType()const { return attacktype; }
@@ -582,17 +582,17 @@ int random_num_based_seed(int Max,int seed);
 
 使用委托关系时，在构造函数的初始化列表里面要把类指针`new`一下，并且在后面的析构函数里面`delete`，这样防止了内存泄漏！
 
-而对于`Object`对象，我选择使用动态管理内存的手段，可以看出`yard`里面存储的都是指针，所以我在创造一个新的`Object`的时候需要`new`以下，当僵尸或者植物死掉，或者子弹越界之后我会`delete`他们，这样做的好处是：
+而对于`Object`对象，我选择使用动态管理内存的手段，可以看出`yard`里面存储的都是指针，所以我在创造一个新的`Object`的时候需要`new`以下，当僵尸或者植物死掉，或者弹珠越界之后我会`delete`他们，这样做的好处是：
 
 - **防止内存泄漏**
-- **防止不断增加的子弹占据过多的内存导致程序运行缓慢**
+- **防止不断增加的弹珠占据过多的内存导致程序运行缓慢**
 
 并且我在析构`ChessBoard`里面进行构造函数
 
 ```c++
 	//存储行列上的植物和僵尸
 	vector<vector<Object*>> yard;
-	//单独用一个子弹yard存储子弹
+	//单独用一个弹珠yard存储弹珠
 	vector<vector<Bullet*>> bulletyard;
 ```
 
@@ -651,7 +651,7 @@ int random_num_based_seed(int Max,int seed);
 
 **按`'b'`就可以进入商店**，根据阳光数目可以购买相应的植物。购买植物时，需要选择相应地块，如果地块有其他植物就要重新购买
 
-太阳花隔一段时间会产生阳光，豌豆射手隔一段时间会产生子弹......
+太阳花隔一段时间会产生阳光，豌豆射手隔一段时间会产生弹珠......
 
 值得注意的是，这里所有参数可以根据实际情况在`Config`里面进行修改！
 

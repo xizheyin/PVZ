@@ -1,7 +1,5 @@
 #include "AbstractPlant.h"
 
-
-
 //构造函数
 AbstractPlant::AbstractPlant(int hp,int r,int c)
 	:
@@ -9,8 +7,6 @@ AbstractPlant::AbstractPlant(int hp,int r,int c)
 {
 	mytype = Object::Plant_t;//设置我的类型是植物
 }
-
 //析构函数
 AbstractPlant::~AbstractPlant() {
-
 }

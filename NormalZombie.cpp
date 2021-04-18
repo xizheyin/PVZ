@@ -1,19 +1,18 @@
 #include "NormalZombie.h"
 
 
-NormalZombie::NormalZombie(int hp,int r)
+NormalZombie::NormalZombie(int r)
 	:
-	AbstractZombie(hp,r)
-{
-	SetSpeed(1);
+	AbstractZombie(HP_NORMAL_ZOMBIE,r,TIME_GAP_NORMAL_ZOMBIE)
+{	
 }
-NormalZombie::~NormalZombie() {
 
+NormalZombie::~NormalZombie() {
 }
 
 
 Attack NormalZombie::AttackEnemy(int time) {
-	Attack atk(Attack::NormalZombie);
+	Attack atk(Attack::BarricadesZombie_t);
 	atk.SetATK(1);
 	return atk;
 }

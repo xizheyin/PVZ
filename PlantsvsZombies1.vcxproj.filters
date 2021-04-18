@@ -69,6 +69,12 @@
     <ClCompile Include="NutWall.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="BarricadesZombie.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PaperZombie.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractPlant.h">
@@ -120,6 +126,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="NutWall.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BarricadesZombie.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PaperZombie.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

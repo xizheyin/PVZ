@@ -16,7 +16,6 @@ public:
 	Attack AttackEnemy(int time);
 	//重定义名称函数
 	string GetName()const { return string("太阳花"); }
-
 	void Update(){ }
 private:
 };

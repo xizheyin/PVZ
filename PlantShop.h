@@ -4,7 +4,6 @@
 #include"NutWall.h"
 #include"ChessBoard.h"
 
-
 class PlantShop
 {
 public:
@@ -17,29 +16,16 @@ public:
 		SunFlower_t,
 		NutWall_t
 	};
-
-
-
 	PlantShop();
 	~PlantShop();
-	
 	//添加阳光
 	void AddSun(int x) { sun += x; }
 	//获取阳光
 	int GetSun()const { return sun; }
-
 	void SubSun(Type type);
-
 	bool CheckEnough(Type type);
-
 	bool SettlePlant(Object* obj, ChessBoard* chessbd, int r, int c);
-
-
-
-
 private:
-
 	int sun;
-
 };
 

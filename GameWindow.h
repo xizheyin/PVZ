@@ -6,7 +6,6 @@
 #include<Windows.h>
 #include<iostream>
 
-
 using namespace std;
 class GameWindow
 {
@@ -21,17 +20,12 @@ public:
 	void Update();
 	//Ë¢ÐÂÆÁÄ»
 	void Show();
-	
 	void Pause();
-
 	void GameOver();
-
 	void PlayMusic();
-
 private:
 	GameControl* gamectrl;
 	ChessBoard* chessbd;
 	PlantShop* pshop;
 	UI* ui;
 };
-

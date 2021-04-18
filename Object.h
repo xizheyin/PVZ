@@ -11,8 +11,6 @@ using namespace std;
 *  植物和僵尸的基类AbstractPlant和AbstractZombie继承它
 */
 
-
-
 class Object
 {
 public:
@@ -20,7 +18,6 @@ public:
 	enum Status { Healthy, Dead };
 	//Object的种类，包括植物和僵尸
 	enum Type { Plant_t, Zombie_t,Bullet_t };
-
 	//构造函数，种类为参数
 	Object(int ty,int Hp,int r,int c);
 	//析构函数
@@ -43,24 +40,19 @@ public:
 	int GetRow()const { return row; }
 	//获得列
 	int GetCol()const { return col; }
-
 	int GetHp()const { return myhp; }
 	int GetMaxHp()const { return myhpmax; }
-
 	//攻击他人,纯虚函数，不同的植物僵尸需要重新定义！
 	virtual Attack AttackEnemy(int time) = 0;
-
 	//virtual void Update();
 	//收到攻击减一点血
-	void Isattacked(int hurt);
+	virtual void Isattacked(int hurt);
 	//死去，改变状态
 	void die();
 	//设置行和列
-
 protected:
 	//我的生命值
 	int myhp;
-	//
 	int myhpmax;
 	//我的种类，上面定义了枚举类型
 	Type mytype;

@@ -4,18 +4,18 @@
 #include"AbstractZombie.h"
 #include"PeaShooter.h"
 #include"NormalZombie.h"
+#include"BarricadesZombie.h"
+#include"PaperZombie.h"
 #include<vector>
 using namespace std;
 
 class ChessBoard
 {
 public:
-	
 	//构造函数
 	ChessBoard();
 	//析构函数
 	~ChessBoard();
-	
 	//更新状态
 	bool Update();
 	//在某位置添加植物，如果不行返回false
@@ -38,15 +38,11 @@ public:
 	void ClearBullet(int r, int c);
 	//清除当前行列的Obj
 	void ClearObj(int i, int j, int k);
-
 	//获得时间
 	unsigned int GetTime()const { return timecounter; }
 	//获取分数
 	int GetScore()const { return score; }
-
-
 private:
-
 	//查看僵尸是否适合前移
 	bool CheckPos(int r,int c);
 	//僵尸进行移动
@@ -55,15 +51,10 @@ private:
 	void BulletMove(int i, int j);
 	//按照一定时间产生僵尸
 	void CreateZombie();
-
 	void TimeUp();
-	
 	void ScoreUp() { score++; }
-
 	int score;
-
 	unsigned int timecounter;
-
 	//最大行数
 	int maxrow;
 	//最大列数

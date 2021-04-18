@@ -11,8 +11,6 @@ public:
 	void PlantControl(Object* obj, ChessBoard* chessbd,PlantShop* pshop);
 	void ZombieControl(Object* obj, ChessBoard* chessbd);
 	void BulletControl(Bullet* blt, ChessBoard* chessbd);
-
 private:
-	
 };
 

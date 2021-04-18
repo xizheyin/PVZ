@@ -142,6 +142,7 @@
     <ClCompile Include="AbstractPlant.cpp" />
     <ClCompile Include="AbstractZombie.cpp" />
     <ClCompile Include="Attack.cpp" />
+    <ClCompile Include="BarricadesZombie.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="ChessBoard.cpp" />
     <ClCompile Include="Config.cpp" />
@@ -153,6 +154,7 @@
     <ClCompile Include="NutWall.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="OptionWindow.cpp" />
+    <ClCompile Include="PaperZombie.cpp" />
     <ClCompile Include="PeaShooter.cpp" />
     <ClCompile Include="PlantShop.cpp" />
     <ClCompile Include="SunFlower.cpp" />
@@ -162,6 +164,7 @@
     <ClInclude Include="AbstractPlant.h" />
     <ClInclude Include="AbstractZombie.h" />
     <ClInclude Include="Attack.h" />
+    <ClInclude Include="BarricadesZombie.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="ChessBoard.h" />
     <ClInclude Include="Config.h" />
@@ -172,6 +175,7 @@
     <ClInclude Include="NutWall.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="OptionWindow.h" />
+    <ClInclude Include="PaperZombie.h" />
     <ClInclude Include="PeaShooter.h" />
     <ClInclude Include="PlantShop.h" />
     <ClInclude Include="SunFlower.h" />

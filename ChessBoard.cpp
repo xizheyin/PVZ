@@ -131,10 +131,11 @@ bool ChessBoard::CheckPos(int r,int c) {//当空或者是僵尸，僵尸适合移动到这里
 
 void ChessBoard::ZombieMove(int i,int j, int k) {
 	AbstractZombie* zmb = static_cast<AbstractZombie*>(yard[i][j][k]);
+	if (!(zmb->CanMove(timecounter)))return;
 	int currow = i;
 	int curcol = j;
 	int nextrow = currow;
-	int nextcol = curcol - zmb->GetSpeed();
+	int nextcol = curcol - 1;
 	if (CheckPos(nextrow, nextcol)) {//当僵尸可以移动的话，就移动
 		zmb->SetRC(nextrow, nextcol);//修改僵尸位置
 		yard[nextrow][nextcol].push_back(zmb);//修改棋盘
@@ -167,7 +168,13 @@ void ChessBoard::CreateZombie() {
 		switch ( random_num(MAX_KINDS_ZOMBIES) )
 		{
 		case 0:
-			obj = new NormalZombie(10, Row);
+			obj = new NormalZombie(Row);
+			break;
+		case 1:
+			obj = new BarricadesZombie(Row);
+			break;
+		case 2:
+			obj = new PaperZombie(Row);
 			break;
 		default:
 			break;

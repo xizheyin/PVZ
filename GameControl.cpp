@@ -48,13 +48,13 @@ void GameControl::PlantControl(Object* obj,ChessBoard* chessbd,PlantShop* pshop)
 	switch (attack.GetAttackType())
 	{
 
-	case Attack::PeaShooter:
+	case Attack::PeaShooter_t:
 		chessbd->AddBullet(attack.GetBullet());
 		break;
-	case Attack::SunFlower:
+	case Attack::SunFlower_t:
 		pshop->AddSun(attack.GetATK());
 		break;
-	case Attack::NutWall:
+	case Attack::NutWall_t:
 		break;
 	default:
 		break;
@@ -70,7 +70,7 @@ void GameControl::ZombieControl(Object* obj,ChessBoard* chessbd) {
 	switch (attack.GetAttackType())
 	{
 
-	case Attack::NormalZombie:
+	case Attack::NormalZombie_t:
 		if (rc.col == 0)return;
 		if (chessbd->GetPlotSize(rc.row, rc.col - 1) > 0)enemy = chessbd->GetObject(rc.row, rc.col - 1, 0);//找到前面的植物，
 		if (enemy != nullptr) {
@@ -79,8 +79,24 @@ void GameControl::ZombieControl(Object* obj,ChessBoard* chessbd) {
 			}
 		}
 		break;
-
-
+	case Attack::BarricadesZombie_t:
+		if (rc.col == 0)return;
+		if (chessbd->GetPlotSize(rc.row, rc.col - 1) > 0)enemy = chessbd->GetObject(rc.row, rc.col - 1, 0);//找到前面的植物，
+		if (enemy != nullptr) {
+			if (enemy->GetType() == Object::Plant_t) {
+				enemy->Isattacked(attack.GetATK());
+			}
+		}
+		break;
+	case Attack::PaperZombie_t:
+		if (rc.col == 0)return;
+		if (chessbd->GetPlotSize(rc.row, rc.col - 1) > 0)enemy = chessbd->GetObject(rc.row, rc.col - 1, 0);//找到前面的植物，
+		if (enemy != nullptr) {
+			if (enemy->GetType() == Object::Plant_t) {
+				enemy->Isattacked(attack.GetATK());
+			}
+		}
+		break;
 	default:
 		break;
 	}

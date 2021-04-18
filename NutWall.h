@@ -1,7 +1,6 @@
 #pragma once
 #include"AbstractPlant.h"
 
-
 class NutWall
 	:public AbstractPlant
 {
@@ -14,7 +13,6 @@ public:
 	Attack AttackEnemy(int time);
 	//重定义名称函数
 	string GetName()const { return string("坚果墙"); }
-
 	void Update() { }
 };
 

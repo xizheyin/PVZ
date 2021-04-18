@@ -7,7 +7,6 @@
 #include <mmsystem.h>
 #pragma comment(lib, "winmm.lib")
 
-
 class MainWindow
 {
 public:
@@ -17,8 +16,6 @@ public:
 	~MainWindow();
 	//主窗口显示
 	void show();
-
-
 private:
 	void PlayMusic();
 	//把窗口主体展示

@@ -10,7 +10,7 @@ const int COL_NUM = 32;
 const int SQUARE_HEIGHT = 4;
 const int SQUARE_WIDTH = 3;
 //僵尸种类上限
-const int MAX_KINDS_ZOMBIES = 3;
+const int MAX_KINDS_ZOMBIES = 4;
 //僵尸产生的时间gap
 const int TIME_GAP_CREATE_ZOMBIE = 10;
 
@@ -20,6 +20,9 @@ const int TIME_GAP_NORMAL_ZOMBIE = 2;
 const int TIME_GAP_BARRICADES_ZOMBIE = 2;
 //读报僵尸移动gap
 const int TIME_GAP_PAPER_ZOMBIE = 2;
+//撑杆僵尸移动gap
+const int TIME_GAP_POLES_ZOMBIE = 2;
+
 
 //普通僵尸基础生命
 const int HP_NORMAL_ZOMBIE = 10;
@@ -27,6 +30,8 @@ const int HP_NORMAL_ZOMBIE = 10;
 const int HP_BARRICADES_ZOMBIE = 30;
 //读报僵尸基础生命
 const int HP_PAPER_ZOMBIE = 20;
+//撑杆僵尸基础生命
+const int HP_POLES_ZOMBIE = 10;
 
 
 
@@ -36,7 +41,7 @@ const int TIME_GAP_PEASHOOTER_ATTACK = 2;
 //产生阳光gap
 const int TIME_GAP_CREATESUN = 20;
 //初始化阳光数目
-const int INIT_SUN = 500;
+const int INIT_SUN = 5000;
 
 
 

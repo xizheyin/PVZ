@@ -122,11 +122,21 @@ void ChessBoard::ClearBullet(int r, int c) {
 }
 
 //检查僵尸是否适合移动到这个位置
-bool ChessBoard::CheckPos(int r,int c) {//当空或者是僵尸，僵尸适合移动到这里
+int ChessBoard::CheckPos(int r,int c,AbstractZombie* zmb) {//当空或者是僵尸，僵尸适合移动到这里
 	if (c < 0)return false;
 	if (yard[r][c].empty())return true;
-	else if (yard[r][c][0]->GetType() == Object::Zombie_t)return true;
-	else return false;
+	else if (yard[r][c][0]->GetType() == Object::Zombie_t)return 1;
+	else if (yard[r][c][0]->GetType() == Object::Plant_t) {
+		if (zmb->AttackEnemy(0).GetAttackType() == Attack::PolesZombie_t) {//利用攻击函数检查是不是撑杆僵尸
+			PolesZombie* pz = static_cast<PolesZombie*>(zmb);
+			if (pz->IsInit()) {//如果还没跳过植物过
+				pz->ChangeInit(); return 2;
+			}
+			else return 0;
+		}
+		else return 0;
+	}
+	else return 0;
 }
 
 void ChessBoard::ZombieMove(int i,int j, int k) {
@@ -136,7 +146,9 @@ void ChessBoard::ZombieMove(int i,int j, int k) {
 	int curcol = j;
 	int nextrow = currow;
 	int nextcol = curcol - 1;
-	if (CheckPos(nextrow, nextcol)) {//当僵尸可以移动的话，就移动
+	int speed = CheckPos(nextrow, nextcol, zmb);
+	nextcol = curcol - speed;
+	if (speed) {//当僵尸可以移动的话，就移动
 		zmb->SetRC(nextrow, nextcol);//修改僵尸位置
 		yard[nextrow][nextcol].push_back(zmb);//修改棋盘
 		yard[currow][curcol].erase(yard[i][j].begin() + k);
@@ -176,6 +188,8 @@ void ChessBoard::CreateZombie() {
 		case 2:
 			obj = new PaperZombie(Row);
 			break;
+		case 3:
+			obj = new PolesZombie(Row);
 		default:
 			break;
 		}

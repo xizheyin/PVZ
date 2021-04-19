@@ -157,6 +157,7 @@
     <ClCompile Include="PaperZombie.cpp" />
     <ClCompile Include="PeaShooter.cpp" />
     <ClCompile Include="PlantShop.cpp" />
+    <ClCompile Include="PolesZombie.cpp" />
     <ClCompile Include="SunFlower.cpp" />
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
@@ -178,6 +179,7 @@
     <ClInclude Include="PaperZombie.h" />
     <ClInclude Include="PeaShooter.h" />
     <ClInclude Include="PlantShop.h" />
+    <ClInclude Include="PolesZombie.h" />
     <ClInclude Include="SunFlower.h" />
     <ClInclude Include="UI.h" />
   </ItemGroup>

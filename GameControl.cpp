@@ -71,24 +71,33 @@ void GameControl::ZombieControl(Object* obj,ChessBoard* chessbd) {
 	{
 
 	case Attack::NormalZombie_t:
-		if (rc.col == 0)return;
+		/*if (rc.col == 0)return;
 		if (chessbd->GetPlotSize(rc.row, rc.col - 1) > 0)enemy = chessbd->GetObject(rc.row, rc.col - 1, 0);//找到前面的植物，
 		if (enemy != nullptr) {
 			if (enemy->GetType() == Object::Plant_t) {
 				enemy->Isattacked(attack.GetATK());
 			}
 		}
-		break;
+		break;*/
 	case Attack::BarricadesZombie_t:
-		if (rc.col == 0)return;
+		/*if (rc.col == 0)return;
 		if (chessbd->GetPlotSize(rc.row, rc.col - 1) > 0)enemy = chessbd->GetObject(rc.row, rc.col - 1, 0);//找到前面的植物，
 		if (enemy != nullptr) {
 			if (enemy->GetType() == Object::Plant_t) {
 				enemy->Isattacked(attack.GetATK());
 			}
 		}
-		break;
+		break;*/
 	case Attack::PaperZombie_t:
+		/*if (rc.col == 0)return;
+		if (chessbd->GetPlotSize(rc.row, rc.col - 1) > 0)enemy = chessbd->GetObject(rc.row, rc.col - 1, 0);//找到前面的植物，
+		if (enemy != nullptr) {
+			if (enemy->GetType() == Object::Plant_t) {
+				enemy->Isattacked(attack.GetATK());
+			}
+		}
+		break;*/
+	case Attack::PolesZombie_t:
 		if (rc.col == 0)return;
 		if (chessbd->GetPlotSize(rc.row, rc.col - 1) > 0)enemy = chessbd->GetObject(rc.row, rc.col - 1, 0);//找到前面的植物，
 		if (enemy != nullptr) {
@@ -97,6 +106,7 @@ void GameControl::ZombieControl(Object* obj,ChessBoard* chessbd) {
 			}
 		}
 		break;
+
 	default:
 		break;
 	}

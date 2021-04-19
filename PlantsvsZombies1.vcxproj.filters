@@ -75,6 +75,9 @@
     <ClCompile Include="PaperZombie.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="PolesZombie.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractPlant.h">
@@ -132,6 +135,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="PaperZombie.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PolesZombie.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

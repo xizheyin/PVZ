@@ -6,6 +6,7 @@
 #include"NormalZombie.h"
 #include"BarricadesZombie.h"
 #include"PaperZombie.h"
+#include"PolesZombie.h"
 #include<vector>
 using namespace std;
 
@@ -43,8 +44,8 @@ public:
 	//获取分数
 	int GetScore()const { return score; }
 private:
-	//查看僵尸是否适合前移
-	bool CheckPos(int r,int c);
+	//查看僵尸是否适合前移,返回移动速度
+	int CheckPos(int r,int c,AbstractZombie* zmb);
 	//僵尸进行移动
 	void ZombieMove(int i, int j, int k);
 	//子弹进行移动

@@ -12,6 +12,7 @@ CastZombie::~CastZombie() {
 }
 
 Attack CastZombie::AttackEnemy(int time) {
+	if (ball <= 0)movegap = 4;
 	Attack atk(Attack::CastZombie_Cast_t);
 	if (ball > 0) {
 		if (time % castgap == 0) {

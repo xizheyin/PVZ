@@ -1,7 +1,6 @@
 #include "PlantShop.h"
 #include<conio.h>
 
-
 //构造函数
 PlantShop::PlantShop() {
 	sun = INIT_SUN;
@@ -11,9 +10,6 @@ PlantShop::PlantShop() {
 PlantShop::~PlantShop() {
 
 }
-
-
-
 
 void PlantShop::SubSun(Type type) {
 	switch (type)
@@ -33,7 +29,6 @@ void PlantShop::SubSun(Type type) {
 	}
 }
 
-
 bool PlantShop::CheckEnough(Type type) {
 	int cost = 0;
 	switch (type) {
@@ -52,8 +47,6 @@ bool PlantShop::CheckEnough(Type type) {
 	if ((sun - cost) >= 0)return true;
 	else return false;
 }
-
-
 
 //安放植物，包括选择地块之类的
 bool PlantShop::SettlePlant(Object* obj, ChessBoard* chessbd,int r,int c) {

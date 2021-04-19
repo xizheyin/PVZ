@@ -1,7 +1,6 @@
 #include "ChessBoard.h"
 #include"Config.h"
 
-
 //构造函数
 ChessBoard::ChessBoard()
 	://初始化列表 一些基本配置
@@ -64,11 +63,9 @@ void ChessBoard::AddZombie(AbstractZombie* zombie,int row) {//添加一个僵尸
 	yard[row][maxcol - 1].push_back(zombie);
 }
 
-
 void ChessBoard::AddBullet(Bullet* blt) {
 	bulletyard[blt->GetRow()][blt->GetCol()] = blt;
 }
-
 
 //更新状态
 bool ChessBoard::Update() {
@@ -86,7 +83,6 @@ bool ChessBoard::Update() {
 					continue;
 				}
 			}
-
 
 			for (int k = yard[i][j].size() - 1; k >= 0; k--) {//检查完是不是死掉之后，检查是不是僵尸，是就移动
 				if (yard[i][j][k]->GetType() == Object::Zombie_t) {
@@ -190,8 +186,13 @@ void ChessBoard::CreateZombie() {
 			break;
 		case 3:
 			obj = new PolesZombie(Row);
+			break;
 		case 4:
 			obj = new ClownZombie(Row);
+			break;
+		case 5:
+			obj = new CastZombie(Row);
+			break;
 		default:
 			break;
 		}

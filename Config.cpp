@@ -30,7 +30,6 @@ void hide_std() {
 
 }
 
-
 //利用row和col获得x和y
 Pos GetPos(int row, int col) { return Pos(1 + col * SQUARE_WIDTH, 2 + row * SQUARE_HEIGHT); }
 

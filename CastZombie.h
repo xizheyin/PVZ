@@ -1,18 +1,21 @@
 #pragma once
 #include "AbstractZombie.h"
-class BarricadesZombie 
-    :public AbstractZombie
+class CastZombie :
+    public AbstractZombie
 {
 public:
     //构造函数
-    BarricadesZombie(int r);
+    CastZombie(int r);
     //析构函数
-    ~BarricadesZombie();
+    ~CastZombie();
     //重定义攻击函数
     Attack AttackEnemy(int time);
     //重定义名称函数
-    string GetName()const { return string("路障"); }
+    string GetName()const { return string("投篮"); }
+
     void Update() { }
 private:
+    int ball;
+    int castgap;
 };
 

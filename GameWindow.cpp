@@ -11,7 +11,6 @@ GameWindow::GameWindow()
 	ui(new UI())
 
 {
-
 }
 
 //析构函数
@@ -65,7 +64,6 @@ void GameWindow::Pause() {
 		Sleep(300);
 	}
 }
-
 
 //游戏结束
 void GameWindow::GameOver() {

@@ -1,6 +1,5 @@
 #include "UI.h"
 
-
 //在下面展示一些基础信息
 void UI::ShowInfo(ChessBoard* chessbd, PlantShop* pshop) {
 	Pos pos = GetPos(ROW_NUM,0);
@@ -9,7 +8,6 @@ void UI::ShowInfo(ChessBoard* chessbd, PlantShop* pshop) {
 	cout << "|阳光总数|" << pshop->GetSun() << "  |得分总数|" << chessbd->GetScore() << endl;
 	cout << "+----------------------+---------------------+";
 }
-
 
 //输出棋盘
 void UI::ShowChessboard(ChessBoard* chessbd) {
@@ -42,18 +40,12 @@ void UI::ShowChessboard(ChessBoard* chessbd) {
 				cout << "" << (100*obj->GetHp()) / obj->GetMaxHp() << "%";
 				set_std_pos(pos.x-2, pos.y);
 				cout << obj->GetName();//输出植物和僵尸
-			}
-			
-			
+			}			
 		}
 	}
 	ShowShop();
 	hide_std();
 }
-
-
-
-
 
 //买植物的UI
 void UI::BuyPlant(ChessBoard* chessbd, PlantShop* pshop) {
@@ -102,9 +94,6 @@ void UI::BuyPlant(ChessBoard* chessbd, PlantShop* pshop) {
 	//BuyPlant(chessbd,pshop);
 	return;
 }
-
-
-
 
 //选择地块
 const RCPair UI::SelectArea(ChessBoard* chessbd) {
@@ -162,7 +151,6 @@ const RCPair UI::SelectArea(ChessBoard* chessbd) {
 	}
 
 }
-
 
 void UI::PrintSelectBox(int r, int c) {
 	Pos pos = GetPos(r, c);

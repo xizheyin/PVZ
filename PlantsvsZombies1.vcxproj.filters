@@ -81,6 +81,9 @@
     <ClCompile Include="ClownZombie.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="CastZombie.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractPlant.h">
@@ -144,6 +147,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="ClownZombie.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CastZombie.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

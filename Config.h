@@ -10,7 +10,7 @@ const int COL_NUM = 32;
 const int SQUARE_HEIGHT = 4;
 const int SQUARE_WIDTH = 3;
 //僵尸种类上限
-const int MAX_KINDS_ZOMBIES = 5;
+const int MAX_KINDS_ZOMBIES = 6;
 //僵尸产生的时间gap
 const int TIME_GAP_CREATE_ZOMBIE = 10;
 
@@ -24,7 +24,8 @@ const int TIME_GAP_PAPER_ZOMBIE = 2;
 const int TIME_GAP_POLES_ZOMBIE = 2;
 //小丑僵尸移动gap
 const int TIME_GAP_CLOWN_ZOMBIE = 2;
-
+//投石僵尸移动gap
+const int TIME_GAP_CAST_ZOMBIE = 2;
 
 //普通僵尸基础生命
 const int HP_NORMAL_ZOMBIE = 10;
@@ -36,7 +37,15 @@ const int HP_PAPER_ZOMBIE = 10;
 const int HP_POLES_ZOMBIE = 10;
 //小丑僵尸基础生命
 const int HP_CLOWN_ZOMBIE = 10;
+//投石僵尸基础生命
+const int HP_CAST_ZOMBIE = 15;
 
+
+//投石僵尸投篮gap
+const int TIME_GAP_CAST = 2;
+
+//投石僵尸初始篮球数
+const int NUM_OF_BALL = 3;
 
 
 //植物攻击gap

@@ -10,7 +10,6 @@ PolesZombie::PolesZombie(int r)
 PolesZombie::~PolesZombie() {
 }
 
-
 Attack PolesZombie::AttackEnemy(int time) {
 	Attack atk(Attack::PolesZombie_t);
 	atk.SetATK(1);

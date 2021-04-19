@@ -1,6 +1,5 @@
 #include "ClownZombie.h"
 
-
 ClownZombie::ClownZombie(int r)
 	:
 	AbstractZombie(HP_CLOWN_ZOMBIE, r, TIME_GAP_CLOWN_ZOMBIE)
@@ -9,7 +8,6 @@ ClownZombie::ClownZombie(int r)
 
 ClownZombie::~ClownZombie() {
 }
-
 
 Attack ClownZombie::AttackEnemy(int time) {
 	Attack atk(Attack::ClownZombie_t);

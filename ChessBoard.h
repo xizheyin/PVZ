@@ -8,6 +8,7 @@
 #include"PaperZombie.h"
 #include"PolesZombie.h"
 #include"ClownZombie.h"
+#include"CastZombie.h"
 #include<vector>
 using namespace std;
 

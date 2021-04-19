@@ -1,9 +1,6 @@
 #include "GameControl.h"
 
-
-
-//更新棋盘上生物的状态（开始攻击）
-//让棋盘上的生物进行攻击
+//更新棋盘上生物的状态（开始攻击），让棋盘上的生物进行攻击
 void GameControl::UpdateChessbd(ChessBoard* chessbd,PlantShop* pshop) {
 
 	//对棋盘上所有方格进行遍历
@@ -47,7 +44,6 @@ void GameControl::PlantControl(Object* obj,ChessBoard* chessbd,PlantShop* pshop)
 	if (attack.GetAttackType() == Attack::None)return;
 	switch (attack.GetAttackType())
 	{
-
 	case Attack::PeaShooter_t:
 		chessbd->AddBullet(attack.GetBullet());
 		break;
@@ -61,7 +57,6 @@ void GameControl::PlantControl(Object* obj,ChessBoard* chessbd,PlantShop* pshop)
 	}
 }
 
-
 //控制僵尸攻击，目前只有普通僵尸
 void GameControl::ZombieControl(Object* obj,ChessBoard* chessbd) {
 	Attack attack = obj->AttackEnemy(chessbd->GetTime());
@@ -71,6 +66,7 @@ void GameControl::ZombieControl(Object* obj,ChessBoard* chessbd) {
 	if (rc.col == 0)return;
 	switch (attack.GetAttackType())
 	{
+	case Attack::CastZombie_Car_t:
 	case Attack::NormalZombie_t:
 	case Attack::BarricadesZombie_t:
 	case Attack::PaperZombie_t:
@@ -95,6 +91,16 @@ void GameControl::ZombieControl(Object* obj,ChessBoard* chessbd) {
 			}
 		}
 		break;
+	case Attack::CastZombie_Cast_t:
+		for (int i = 0; i < rc.col; i++) {//找到当前行最左边的植物
+			if (chessbd->GetPlotSize(rc.row, i) > 0) {
+				enemy = chessbd->GetObject(rc.row, i, 0);
+				if (enemy->GetType() == Object::Plant_t) {
+					enemy->Isattacked(attack.GetATK());
+				}
+			}
+		}
+		break;
 	default:
 		break;
 	}
@@ -104,9 +110,7 @@ void GameControl::ZombieControl(Object* obj,ChessBoard* chessbd) {
 void GameControl::BulletControl(Bullet* blt, ChessBoard* chessbd) {
 	int r = blt->GetRow();
 	int c = blt->GetCol();
-	
 	bool flag = false;
-
 	Object* obj = nullptr;
 	if (chessbd->GetPlotSize(r, c) > 0) obj = chessbd->GetObject(r, c, 0);
 	if (obj != nullptr) {
@@ -124,6 +128,5 @@ void GameControl::BulletControl(Bullet* blt, ChessBoard* chessbd) {
 		}
 	}
 	if(flag)chessbd->ClearBullet(r, c);
-
 }
 

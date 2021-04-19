@@ -3,7 +3,6 @@
 #include<iostream>
 using namespace std;
 
-
 //构造函数
 MainWindow::MainWindow():gamewindow(new GameWindow()),optionwindow(new OptionWindow()) {
 	
@@ -40,7 +39,6 @@ void MainWindow::PlayMusic() {
 	::PlaySound(TEXT("PVZ.wav"), NULL, SND_LOOP);
 }
 
-
 //退出窗口
 void MainWindow::exitMainWindow() {
 	system("cls");
@@ -63,7 +61,6 @@ void MainWindow::ShowWindowHead() {
 	cout << "***********************************************" << endl;
 	cout << "请你选择：   1.进入游戏    2.帮助    3.退出游戏" << endl;
 }
-
 
 //输错数字的后果，显示错误信息，然后重新显示
 void MainWindow::WrongInput() {

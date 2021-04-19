@@ -7,12 +7,14 @@ class Attack
 public:
 	enum {//攻击类型，到时候control模块根据攻击类型确定具体的攻击
 		None,
-		PeaShooter_t,
 		NormalZombie_t,
 		BarricadesZombie_t,
 		PaperZombie_t,
 		PolesZombie_t,
 		ClownZombie_t,
+		CastZombie_Cast_t,
+		CastZombie_Car_t,
+		PeaShooter_t,
 		SunFlower_t,
 		NutWall_t
 	};
@@ -32,6 +34,8 @@ public:
 	void SetATK(int atk) { ATK = atk; }
 	//获得攻击值
 	int GetATK()const { return ATK; }
+	//设置攻击类型
+	void SetType(int ty) { attacktype = ty; }
 private:
 	//攻击类型
 	int attacktype;

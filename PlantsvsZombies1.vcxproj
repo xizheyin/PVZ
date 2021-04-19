@@ -145,6 +145,7 @@
     <ClCompile Include="BarricadesZombie.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="ChessBoard.cpp" />
+    <ClCompile Include="ClownZombie.cpp" />
     <ClCompile Include="Config.cpp" />
     <ClCompile Include="GameControl.cpp" />
     <ClCompile Include="GameWindow.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="BarricadesZombie.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="ChessBoard.h" />
+    <ClInclude Include="ClownZombie.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="GameControl.h" />
     <ClInclude Include="GameWindow.h" />

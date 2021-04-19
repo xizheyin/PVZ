@@ -7,6 +7,7 @@
 #include"BarricadesZombie.h"
 #include"PaperZombie.h"
 #include"PolesZombie.h"
+#include"ClownZombie.h"
 #include<vector>
 using namespace std;
 
@@ -32,7 +33,10 @@ public:
 	//得到当前行列的Object指针
 	Object* GetObject(int r, int c,int i) { return yard[r][c][i]; }
 	//得到i,j地块
-	int GetPlotSize(int r, int c) { return yard[r][c].size(); }
+	int GetPlotSize(int r, int c) {
+		if (r >= 0 && r < ROW_NUM && c >= 0 && c < COL_NUM)return yard[r][c].size();
+		else return 0;
+	}
 	//得到当前行列的子弹指针
 	Bullet* GetBullet(int r, int c) { return bulletyard[r][c]; }
 	//清除行列的子弹

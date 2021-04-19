@@ -67,38 +67,14 @@ void GameControl::ZombieControl(Object* obj,ChessBoard* chessbd) {
 	Attack attack = obj->AttackEnemy(chessbd->GetTime());
 	RCPair rc = obj->GetRC();
 	Object* enemy = nullptr;
+	int rnum=0;
+	if (rc.col == 0)return;
 	switch (attack.GetAttackType())
 	{
-
 	case Attack::NormalZombie_t:
-		/*if (rc.col == 0)return;
-		if (chessbd->GetPlotSize(rc.row, rc.col - 1) > 0)enemy = chessbd->GetObject(rc.row, rc.col - 1, 0);//找到前面的植物，
-		if (enemy != nullptr) {
-			if (enemy->GetType() == Object::Plant_t) {
-				enemy->Isattacked(attack.GetATK());
-			}
-		}
-		break;*/
 	case Attack::BarricadesZombie_t:
-		/*if (rc.col == 0)return;
-		if (chessbd->GetPlotSize(rc.row, rc.col - 1) > 0)enemy = chessbd->GetObject(rc.row, rc.col - 1, 0);//找到前面的植物，
-		if (enemy != nullptr) {
-			if (enemy->GetType() == Object::Plant_t) {
-				enemy->Isattacked(attack.GetATK());
-			}
-		}
-		break;*/
 	case Attack::PaperZombie_t:
-		/*if (rc.col == 0)return;
-		if (chessbd->GetPlotSize(rc.row, rc.col - 1) > 0)enemy = chessbd->GetObject(rc.row, rc.col - 1, 0);//找到前面的植物，
-		if (enemy != nullptr) {
-			if (enemy->GetType() == Object::Plant_t) {
-				enemy->Isattacked(attack.GetATK());
-			}
-		}
-		break;*/
 	case Attack::PolesZombie_t:
-		if (rc.col == 0)return;
 		if (chessbd->GetPlotSize(rc.row, rc.col - 1) > 0)enemy = chessbd->GetObject(rc.row, rc.col - 1, 0);//找到前面的植物，
 		if (enemy != nullptr) {
 			if (enemy->GetType() == Object::Plant_t) {
@@ -106,7 +82,19 @@ void GameControl::ZombieControl(Object* obj,ChessBoard* chessbd) {
 			}
 		}
 		break;
-
+	case Attack::ClownZombie_t:
+		rnum=random_num(100);
+		if (rnum == 0||rc.col<=6) {
+			for (int i = -1; i <= 1; i++) {//遍历3x3
+				for (int j = -6; j <= 6; j++) {
+					if (chessbd->GetPlotSize(rc.row + i, rc.col + j) > 0) {
+						enemy = chessbd->GetObject(rc.row + i, rc.col + j, 0);
+						if (enemy->GetType() == Object::Plant_t)enemy->Isattacked(attack.GetATK());//小丑只炸植物
+					}
+				}
+			}
+		}
+		break;
 	default:
 		break;
 	}

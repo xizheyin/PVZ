@@ -12,6 +12,7 @@ public:
 		BarricadesZombie_t,
 		PaperZombie_t,
 		PolesZombie_t,
+		ClownZombie_t,
 		SunFlower_t,
 		NutWall_t
 	};

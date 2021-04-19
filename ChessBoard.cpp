@@ -190,6 +190,8 @@ void ChessBoard::CreateZombie() {
 			break;
 		case 3:
 			obj = new PolesZombie(Row);
+		case 4:
+			obj = new ClownZombie(Row);
 		default:
 			break;
 		}

@@ -50,6 +50,9 @@ public:
 	//死去，改变状态
 	void die();
 	//设置行和列
+
+	bool operator==(const Object* rhs)const { return (mytype == rhs->mytype && row == rhs->row && col == rhs->col); }
+
 protected:
 	//我的生命值
 	int myhp;

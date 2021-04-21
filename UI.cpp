@@ -40,6 +40,10 @@ void UI::ShowChessboard(ChessBoard* chessbd) {
 				cout << "" << (100*obj->GetHp()) / obj->GetMaxHp() << "%";
 				set_std_pos(pos.x-2, pos.y);
 				cout << obj->GetName();//输出植物和僵尸
+				if ((obj->AttackEnemy(0)).GetAttackType() == Attack::Cherry_t) {
+					set_std_pos(pos.x - 3, pos.y + 1);
+					cout << static_cast<Cherry*>(obj)->GetTimeLeft();
+				}
 			}			
 		}
 	}
@@ -108,7 +112,23 @@ void UI::BuyPlant(ChessBoard* chessbd, PlantShop* pshop) {
 		obj = new HighNut();
 		if (pshop->CheckEnough(PlantShop::IceShooter_t)) {
 			Success = pshop->SettlePlant(obj, chessbd, rcp.row, rcp.col);
-			if (Success)pshop->SubSun(PlantShop::IceShooter_t);
+			if (Success)pshop->SubSun(PlantShop::HighNut_t);
+			return;
+		}
+		break;
+	case '7':
+		obj = new Squash();
+		if (pshop->CheckEnough(PlantShop::Squash_t)) {
+			Success = pshop->SettlePlant(obj, chessbd, rcp.row, rcp.col);
+			if (Success)pshop->SubSun(PlantShop::Squash_t);
+			return;
+		}
+		break;
+	case '8':
+		obj = new Cherry();
+		if (pshop->CheckEnough(PlantShop::Cherry_t)) {
+			Success = pshop->SettlePlant(obj, chessbd, rcp.row, rcp.col);
+			if (Success)pshop->SubSun(PlantShop::Cherry_t);
 			return;
 		}
 		break;
@@ -200,8 +220,8 @@ void UI::ShowShop() {
 	set_std_pos(pos.x, pos.y);
 	cout << "欢迎来到植物商店" << endl;
 	cout << "+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+" << endl;
-	cout << "|   1    |   2    |   3    |   4    |   5    |   6    |        |        |        |        |" << endl;
-	cout << "| 太阳花 |豌豆射手| 坚果墙 |双发射手|寒冰射手| 高坚果 |        |        |        |        |" << endl;
-	cout << "|  ￥75  | ￥100  |  ￥60  | ￥150  | ￥120  | ￥150  |        |        |        |        |" << endl;
+	cout << "|   1    |   2    |   3    |   4    |   5    |   6    |   7    |   8    |        |        |" << endl;
+	cout << "| 太阳花 |豌豆射手| 坚果墙 |双发射手|寒冰射手| 高坚果 |  倭瓜  |  樱桃  |        |        |" << endl;
+	cout << "|  ￥75  | ￥100  |  ￥60  | ￥150  | ￥120  | ￥150  |  ￥80  | ￥100  |        |        |" << endl;
 	cout << "+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+" << endl;
 }

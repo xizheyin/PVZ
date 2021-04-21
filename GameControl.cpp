@@ -39,6 +39,7 @@ void GameControl::UpdateChessbd(ChessBoard* chessbd,PlantShop* pshop) {
 //控制植物攻击，目前只有豌豆射手
 void GameControl::PlantControl(Object* obj,ChessBoard* chessbd,PlantShop* pshop) {
 	//来获得攻击对象
+	RCPair rc = obj->GetRC();
 	Attack attack=obj->AttackEnemy(chessbd->GetTime());
 	//如果发现攻击对象啥也不是就return
 	if (attack.GetAttackType() == Attack::None)return;
@@ -54,7 +55,42 @@ void GameControl::PlantControl(Object* obj,ChessBoard* chessbd,PlantShop* pshop)
 		break;
 	case Attack::NutWall_t:
 		break;
-
+	case Attack::Squash_t:
+		if (chessbd->GetPlotSize(rc.row, rc.col + 1) > 0) {//如果有僵尸就炸他
+			for (int i = 0; i <= 0; i++) {
+				for (int j = -1; j <= 1; j++) {
+					if (rc.row + i > 2 || rc.row + i < 0)continue;
+					int size = chessbd->GetPlotSize(rc.row + i, rc.col + j);
+					if (size > 0) {
+						for (int k = 0; k < size; k++) {
+							Object* enemy = chessbd->GetObject(rc.row+i, rc.col+j, k);
+							if (enemy->GetType() == Object::Zombie_t) {
+								enemy->Isattacked(attack.GetATK());
+							}
+							obj->Isattacked(attack.GetATK());
+						}
+					}
+				}
+			}
+		}
+		break;
+	case Attack::Cherry_t:
+		for (int i = -1; i <= 1; i++) {
+			for (int j = -4; j <= 4; j++) {
+				if (rc.row + i > 2 || rc.row + i < 0)continue;
+				int size = chessbd->GetPlotSize(rc.row + i, rc.col + j);
+				if (size > 0) {
+					for (int k = 0; k < size; k++) {
+						Object* enemy = chessbd->GetObject(rc.row + i, rc.col + j, k);
+						if (enemy->GetType() == Object::Zombie_t) {
+							enemy->Isattacked(attack.GetATK());
+						}
+						obj->Isattacked(attack.GetATK());
+					}
+				}
+			}
+		}
+		break;
 	default:
 		break;
 	}
@@ -83,13 +119,16 @@ void GameControl::ZombieControl(Object* obj,ChessBoard* chessbd) {
 		break;
 	case Attack::ClownZombie_t:
 		rnum=random_num(100);
-		if (rnum == 0||rc.col<=6) {
+		if (rnum < 5||rc.col<=6) {
 			for (int i = -1; i <= 1; i++) {//遍历3x3
-				for (int j = -6; j <= 6; j++) {
+				for (int j = -4; j <= 4; j++) {
 					if (chessbd->GetPlotSize(rc.row + i, rc.col + j) > 0) {
 						enemy = chessbd->GetObject(rc.row + i, rc.col + j, 0);
-						enemy->Isattacked(attack.GetATK());//小丑也把自己炸死
+						if (enemy->GetType() == Object::Plant_t)
+							enemy->Isattacked(attack.GetATK());
+						//小丑也把自己炸死
 					}
+					obj->Isattacked(attack.GetATK());
 				}
 			}
 		}
@@ -100,6 +139,7 @@ void GameControl::ZombieControl(Object* obj,ChessBoard* chessbd) {
 				enemy = chessbd->GetObject(rc.row, i, 0);
 				if (enemy->GetType() == Object::Plant_t) {
 					enemy->Isattacked(attack.GetATK());
+					break;
 				}
 			}
 		}

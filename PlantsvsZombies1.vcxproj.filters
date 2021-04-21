@@ -93,6 +93,12 @@
     <ClCompile Include="HighNut.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Squash.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Cherry.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractPlant.h">
@@ -168,6 +174,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="HighNut.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Squash.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Cherry.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

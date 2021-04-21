@@ -60,9 +60,10 @@ const int HP_DOUBLESHOOTER = 20;
 const int HP_ICESHOOTER = 20;
 //高坚果
 const int HP_HIGHNUT = 240;
-
-
-
+//倭瓜
+const int HP_SQUASH = 10;
+//樱桃
+const int HP_CHERRY = 20;
 
 
 
@@ -82,6 +83,9 @@ const int PEASHOOTER_COST =100;
 const int SUNFLOWER_COST = 75;
 const int ICESHOOTER_COST = 120;
 const int HIGHNUT_COST = 200;
+const int SQUASH_COST = 80;
+const int CHERRY_COST = 100;
+
 
 //初始化阳光数目
 const int INIT_SUN = 5000;

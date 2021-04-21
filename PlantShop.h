@@ -5,6 +5,8 @@
 #include"DoubleShooter.h"
 #include"IceShooter.h"
 #include"HighNut.h"
+#include"Squash.h"
+#include"Cherry.h"
 #include"ChessBoard.h"
 
 class PlantShop
@@ -19,7 +21,9 @@ public:
 		NutWall_t,
 		HighNut_t,
 		DoubleShooter_t,
-		IceShooter_t
+		IceShooter_t,
+		Squash_t,
+		Cherry_t
 	};
 	PlantShop();
 	~PlantShop();

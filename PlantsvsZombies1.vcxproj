@@ -145,6 +145,7 @@
     <ClCompile Include="BarricadesZombie.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CastZombie.cpp" />
+    <ClCompile Include="Cherry.cpp" />
     <ClCompile Include="ChessBoard.cpp" />
     <ClCompile Include="ClownZombie.cpp" />
     <ClCompile Include="Config.cpp" />
@@ -163,6 +164,7 @@
     <ClCompile Include="PeaShooter.cpp" />
     <ClCompile Include="PlantShop.cpp" />
     <ClCompile Include="PolesZombie.cpp" />
+    <ClCompile Include="Squash.cpp" />
     <ClCompile Include="SunFlower.cpp" />
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
@@ -173,6 +175,7 @@
     <ClInclude Include="BarricadesZombie.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="CastZombie.h" />
+    <ClInclude Include="Cherry.h" />
     <ClInclude Include="ChessBoard.h" />
     <ClInclude Include="ClownZombie.h" />
     <ClInclude Include="Config.h" />
@@ -190,6 +193,7 @@
     <ClInclude Include="PeaShooter.h" />
     <ClInclude Include="PlantShop.h" />
     <ClInclude Include="PolesZombie.h" />
+    <ClInclude Include="Squash.h" />
     <ClInclude Include="SunFlower.h" />
     <ClInclude Include="UI.h" />
   </ItemGroup>

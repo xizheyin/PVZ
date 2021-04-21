@@ -197,7 +197,6 @@ void ChessBoard::CreateZombie() {
 		default:
 			break;
 		}
-		obj = new ClownZombie(Row);
 		RCPair rc = obj->GetRC();
 		yard[rc.row][rc.col].push_back(obj);
 	}

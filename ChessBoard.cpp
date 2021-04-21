@@ -123,6 +123,7 @@ int ChessBoard::CheckPos(int r,int c,AbstractZombie* zmb) {//µ±¿Õ»òÕßÊÇ½©Ê¬£¬½©Ê
 	if (yard[r][c].empty())return true;
 	else if (yard[r][c][0]->GetType() == Object::Zombie_t)return 1;
 	else if (yard[r][c][0]->GetType() == Object::Plant_t) {
+		if (yard[r][c][0]->AttackEnemy(timecounter).GetAttackType() == Attack::HighNut_t)return 0;
 		if (zmb->AttackEnemy(0).GetAttackType() == Attack::PolesZombie_t) {//ÀûÓÃ¹¥»÷º¯Êı¼ì²éÊÇ²»ÊÇ³Å¸Ë½©Ê¬
 			PolesZombie* pz = static_cast<PolesZombie*>(zmb);
 			if (pz->IsInit()) {//Èç¹û»¹Ã»Ìø¹ıÖ²Îï¹ı
@@ -196,7 +197,7 @@ void ChessBoard::CreateZombie() {
 		default:
 			break;
 		}
-
+		obj = new ClownZombie(Row);
 		RCPair rc = obj->GetRC();
 		yard[rc.row][rc.col].push_back(obj);
 	}

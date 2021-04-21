@@ -1,9 +1,9 @@
 #include "PeaShooter.h"
 
 //构造函数
-PeaShooter::PeaShooter(int hp,int r,int c)
+PeaShooter::PeaShooter(int r,int c)
 	:
-	AbstractPlant(hp,r,c),//类型是植物
+	AbstractPlant(HP_PEASHOOTER,r,c),//类型是植物
 	timegap(TIME_GAP_PEASHOOTER_ATTACK)
 {
 }

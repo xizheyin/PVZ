@@ -23,6 +23,8 @@ public:
 	void SetATK(int atk) { ATK = atk; }
 	//获得伤害值
 	int GetATK()const { return ATK; }
+	void SetIce() { ice = true; }
+	bool IsIce() { return ice; }
 private:
 	//子弹伤害值
 	int ATK;
@@ -30,4 +32,5 @@ private:
 	int row,col;
 	//子弹速度
 	int speed;
+	bool ice;
 };

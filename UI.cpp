@@ -54,7 +54,7 @@ void UI::BuyPlant(ChessBoard* chessbd, PlantShop* pshop) {
 	while (1) {
 		if (_kbhit()) {
 			ch = _getch();//获取按下的按键
-			if(ch>='1'&&ch<='3')break;
+			if(ch>='1'&&ch<='10')break;
 		}
 		Sleep(200);
 	}
@@ -65,7 +65,7 @@ void UI::BuyPlant(ChessBoard* chessbd, PlantShop* pshop) {
 	switch (ch)
 	{
 	case '1'://太阳花
-		obj = new SunFlower(10);//hp是10
+		obj = new SunFlower();//hp是10
 		if (pshop->CheckEnough(PlantShop::SunFlower_t)) {
 			Success=pshop->SettlePlant(obj, chessbd, rcp.row, rcp.col);
 			if(Success)pshop->SubSun(PlantShop::SunFlower_t);
@@ -73,7 +73,7 @@ void UI::BuyPlant(ChessBoard* chessbd, PlantShop* pshop) {
 		}
 		break;
 	case '2'://豌豆射手
-		obj = new PeaShooter(10);//利用默认参数列表，后续设置位置
+		obj = new PeaShooter();//利用默认参数列表，后续设置位置
 		if (pshop->CheckEnough(PlantShop::PeaShooter_t)) {
 			Success=pshop->SettlePlant(obj, chessbd, rcp.row, rcp.col);
 			if(Success)pshop->SubSun(PlantShop::PeaShooter_t);
@@ -87,11 +87,35 @@ void UI::BuyPlant(ChessBoard* chessbd, PlantShop* pshop) {
 			if (Success)pshop->SubSun(PlantShop::NutWall_t);
 			return;
 		}
+		break;
+	case '4'://双发射手
+		obj = new DoubleShooter();
+		if (pshop->CheckEnough(PlantShop::DoubleShooter_t)) {
+			Success = pshop->SettlePlant(obj, chessbd, rcp.row, rcp.col);
+			if (Success)pshop->SubSun(PlantShop::PeaShooter_t);
+			return;
+		}
+		break;
+	case '5':
+		obj = new IceShooter();
+		if (pshop->CheckEnough(PlantShop::IceShooter_t)) {
+			Success = pshop->SettlePlant(obj, chessbd, rcp.row, rcp.col);
+			if (Success)pshop->SubSun(PlantShop::IceShooter_t);
+			return;
+		}
+		break;
+	case '6':
+		obj = new HighNut();
+		if (pshop->CheckEnough(PlantShop::IceShooter_t)) {
+			Success = pshop->SettlePlant(obj, chessbd, rcp.row, rcp.col);
+			if (Success)pshop->SubSun(PlantShop::IceShooter_t);
+			return;
+		}
+		break;
 	default:
 		BuyPlant(chessbd,pshop);
 		break;
 	}
-	//BuyPlant(chessbd,pshop);
 	return;
 }
 
@@ -176,8 +200,8 @@ void UI::ShowShop() {
 	set_std_pos(pos.x, pos.y);
 	cout << "欢迎来到植物商店" << endl;
 	cout << "+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+" << endl;
-	cout << "|   1    |   2    |   3    |        |        |        |        |        |        |        |" << endl;
-	cout << "| 太阳花 |豌豆射手| 坚果墙 |        |        |        |        |        |        |        |" << endl;
-	cout << "|  ￥75  | ￥100  |  ￥60  |        |        |        |        |        |        |        |" << endl;
+	cout << "|   1    |   2    |   3    |   4    |   5    |   6    |        |        |        |        |" << endl;
+	cout << "| 太阳花 |豌豆射手| 坚果墙 |双发射手|寒冰射手| 高坚果 |        |        |        |        |" << endl;
+	cout << "|  ￥75  | ￥100  |  ￥60  | ￥150  | ￥120  | ￥150  |        |        |        |        |" << endl;
 	cout << "+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+" << endl;
 }

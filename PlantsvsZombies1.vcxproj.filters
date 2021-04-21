@@ -84,6 +84,15 @@
     <ClCompile Include="CastZombie.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="DoubleShooter.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="IceShooter.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="HighNut.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractPlant.h">
@@ -150,6 +159,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="CastZombie.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DoubleShooter.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="IceShooter.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="HighNut.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

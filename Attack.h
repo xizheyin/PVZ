@@ -16,7 +16,10 @@ public:
 		CastZombie_Car_t,
 		PeaShooter_t,
 		SunFlower_t,
-		NutWall_t
+		NutWall_t,
+		HighNut_t,
+		DoubleShooter_t,
+		IceShooter_t
 	};
 	//构造函数，参数是攻击类型
 	Attack(int _attacktype);

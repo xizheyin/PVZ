@@ -44,6 +44,8 @@ void GameControl::PlantControl(Object* obj,ChessBoard* chessbd,PlantShop* pshop)
 	if (attack.GetAttackType() == Attack::None)return;
 	switch (attack.GetAttackType())
 	{
+	case Attack::IceShooter_t:
+	case Attack::DoubleShooter_t:
 	case Attack::PeaShooter_t:
 		chessbd->AddBullet(attack.GetBullet());
 		break;
@@ -52,6 +54,7 @@ void GameControl::PlantControl(Object* obj,ChessBoard* chessbd,PlantShop* pshop)
 		break;
 	case Attack::NutWall_t:
 		break;
+
 	default:
 		break;
 	}
@@ -85,7 +88,7 @@ void GameControl::ZombieControl(Object* obj,ChessBoard* chessbd) {
 				for (int j = -6; j <= 6; j++) {
 					if (chessbd->GetPlotSize(rc.row + i, rc.col + j) > 0) {
 						enemy = chessbd->GetObject(rc.row + i, rc.col + j, 0);
-						if (enemy->GetType() == Object::Plant_t)enemy->Isattacked(attack.GetATK());//小丑只炸植物
+						enemy->Isattacked(attack.GetATK());//小丑也把自己炸死
 					}
 				}
 			}
@@ -116,6 +119,7 @@ void GameControl::BulletControl(Bullet* blt, ChessBoard* chessbd) {
 	if (obj != nullptr) {
 		if (obj->GetType() == Object::Zombie_t) {
 			obj->Isattacked(blt->GetATK());
+			if (blt->IsIce())static_cast<AbstractZombie*>(obj)->SpeedDown();
 			flag = true;
 		}
 	}
@@ -124,6 +128,7 @@ void GameControl::BulletControl(Bullet* blt, ChessBoard* chessbd) {
 	if (obj != nullptr) {
 		if (obj->GetType() == Object::Zombie_t) {
 			obj->Isattacked(blt->GetATK());
+			if (blt->IsIce())static_cast<AbstractZombie*>(obj)->SpeedDown();
 			flag = true;
 		}
 	}

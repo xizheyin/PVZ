@@ -15,15 +15,21 @@ void PlantShop::SubSun(Type type) {
 	switch (type)
 	{
 
-	case PlantShop::PeaShooter_t:
-		sun -= 100;
+	case PeaShooter_t:
+		sun -= PEASHOOTER_COST;
 		break;
-	case PlantShop::SunFlower_t:
-		sun -= 75;
+	case SunFlower_t:
+		sun -= SUNFLOWER_COST;
 		break;
-	case PlantShop::NutWall_t:
-		sun -= 60;
+	case NutWall_t:
+		sun -= NUTWALL_COST;
 		break;
+	case DoubleShooter_t:
+		sun -= NUTWALL_COST;
+	case IceShooter_t:
+		sun -= ICESHOOTER_COST;
+	case HighNut_t:
+		sun -= HIGHNUT_COST;
 	default:
 		break;
 	}
@@ -33,14 +39,21 @@ bool PlantShop::CheckEnough(Type type) {
 	int cost = 0;
 	switch (type) {
 	case PeaShooter_t:
-		cost = 100;
+		cost = PEASHOOTER_COST;
 		break;
 	case SunFlower_t:
-		cost = 75;
+		cost = SUNFLOWER_COST;
 		break;
 	case NutWall_t:
-		cost = 60;
+		cost = NUTWALL_COST;
 		break;
+	case DoubleShooter_t:
+		cost = DOUBLESHOOTER_COST;
+		break;
+	case IceShooter_t:
+		cost = ICESHOOTER_COST;
+	case HighNut_t:
+		cost = HIGHNUT_COST;
 	default:
 		break;
 	}

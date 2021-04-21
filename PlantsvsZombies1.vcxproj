@@ -148,8 +148,11 @@
     <ClCompile Include="ChessBoard.cpp" />
     <ClCompile Include="ClownZombie.cpp" />
     <ClCompile Include="Config.cpp" />
+    <ClCompile Include="DoubleShooter.cpp" />
     <ClCompile Include="GameControl.cpp" />
     <ClCompile Include="GameWindow.cpp" />
+    <ClCompile Include="HighNut.cpp" />
+    <ClCompile Include="IceShooter.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="NormalZombie.cpp" />
@@ -173,8 +176,11 @@
     <ClInclude Include="ChessBoard.h" />
     <ClInclude Include="ClownZombie.h" />
     <ClInclude Include="Config.h" />
+    <ClInclude Include="DoubleShooter.h" />
     <ClInclude Include="GameControl.h" />
     <ClInclude Include="GameWindow.h" />
+    <ClInclude Include="HighNut.h" />
+    <ClInclude Include="IceShooter.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="NormalZombie.h" />
     <ClInclude Include="NutWall.h" />

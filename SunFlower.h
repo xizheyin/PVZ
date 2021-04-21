@@ -9,7 +9,7 @@ class SunFlower :
 {
 public:
 	//构造函数
-	SunFlower(int hp, int r = -1, int c = -1);
+	SunFlower(int r = -1, int c = -1);
 	//析构函数
 	~SunFlower();
 	//重定义攻击函数

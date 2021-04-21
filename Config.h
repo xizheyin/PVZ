@@ -48,10 +48,41 @@ const int TIME_GAP_CAST = 2;
 const int NUM_OF_BALL = 3;
 
 
-//植物攻击gap
-const int TIME_GAP_PEASHOOTER_ATTACK = 2;
+//豌豆射手初始hp
+const int HP_PEASHOOTER = 15;
+//太阳花初始hp
+const int HP_SUNFLOWER = 20;
+//坚果墙初始hp
+const int HP_NUTWALL = 120;
+//双发射手初始hp
+const int HP_DOUBLESHOOTER = 20;
+//寒冰射手初始hp
+const int HP_ICESHOOTER = 20;
+//高坚果
+const int HP_HIGHNUT = 240;
+
+
+
+
+
+
+//豌豆射手攻击gap
+const int TIME_GAP_PEASHOOTER_ATTACK = 4;
 //产生阳光gap
 const int TIME_GAP_CREATESUN = 20;
+//双发射手
+const int TIME_GAP_DOUBLESHOOTER_ATTACK = 4;
+//寒冰射手
+const int TIME_GAP_ICESHOOTER_ATTACK = 4;
+
+
+const int DOUBLESHOOTER_COST = 150;
+const int NUTWALL_COST = 60;
+const int PEASHOOTER_COST =100;
+const int SUNFLOWER_COST = 75;
+const int ICESHOOTER_COST = 120;
+const int HIGHNUT_COST = 200;
+
 //初始化阳光数目
 const int INIT_SUN = 5000;
 

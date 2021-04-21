@@ -5,6 +5,7 @@ Bullet::Bullet(int _ATK, int r, int c) {
 	ATK = _ATK;
 	row = r;
 	col = c;
+	ice = false;
 }
 
 Bullet::~Bullet() {

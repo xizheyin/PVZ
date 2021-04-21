@@ -1,8 +1,8 @@
 #include "SunFlower.h"
 
-SunFlower::SunFlower(int hp, int r , int c) 
+SunFlower::SunFlower(int r , int c) 
 	:
-	AbstractPlant(hp, r, c)
+	AbstractPlant(HP_SUNFLOWER, r, c)
 {
 }
 

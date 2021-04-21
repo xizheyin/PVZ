@@ -11,9 +11,10 @@ public:
     //析构函数
     ~AbstractZombie();
     bool CanMove(unsigned timercount)const { return (timercount % movegap == 0); }
-
+    void SpeedDown() { if (!speeddown) { movegap *= 2; speeddown = true; } }
 protected:
     //僵尸移动的速度(时间间隔)
     int movegap;
+    bool speeddown;
 };
 

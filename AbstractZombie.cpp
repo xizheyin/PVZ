@@ -10,6 +10,7 @@ AbstractZombie::AbstractZombie(int hp, int r,int gap)
 	movegap(gap)
 {
 	mytype = Object::Zombie_t;
+	speeddown = false;
 }
 
 //Îö¹¹º¯Êı

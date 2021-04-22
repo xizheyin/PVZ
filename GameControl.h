@@ -9,7 +9,7 @@ public:
 	~GameControl() { }
 	void UpdateChessbd(ChessBoard* chessbd,PlantShop* pshop);
 	void PlantControl(Object* obj, ChessBoard* chessbd,PlantShop* pshop);
-	void ZombieControl(Object* obj, ChessBoard* chessbd);
+	void ZombieControl(Object* obj, ChessBoard* chessbd,int k);
 	void BulletControl(Bullet* blt, ChessBoard* chessbd);
 private:
 };

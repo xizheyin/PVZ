@@ -2,7 +2,7 @@
 
 NutWall::NutWall(int r, int c)
 	:
-	AbstractPlant(HP_NUTWALL, r, c)
+	AbstractPlant(NutWall_t,HP_NUTWALL, r, c)
 {
 }
 

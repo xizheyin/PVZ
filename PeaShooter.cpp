@@ -3,7 +3,7 @@
 //构造函数
 PeaShooter::PeaShooter(int r,int c)
 	:
-	AbstractPlant(HP_PEASHOOTER,r,c),//类型是植物
+	AbstractPlant(PeaShooter_t,HP_PEASHOOTER,r,c),//类型是植物
 	timegap(TIME_GAP_PEASHOOTER_ATTACK)
 {
 }

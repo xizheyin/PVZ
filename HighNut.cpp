@@ -3,7 +3,7 @@
 
 HighNut::HighNut(int r, int c)
 	:
-	AbstractPlant(HP_HIGHNUT, r, c)
+	AbstractPlant(HighNut_t,HP_HIGHNUT, r, c)
 {
 }
 

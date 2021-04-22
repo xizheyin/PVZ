@@ -152,6 +152,7 @@
     <ClCompile Include="DoubleShooter.cpp" />
     <ClCompile Include="GameControl.cpp" />
     <ClCompile Include="GameWindow.cpp" />
+    <ClCompile Include="Garlic.cpp" />
     <ClCompile Include="HighNut.cpp" />
     <ClCompile Include="IceShooter.cpp" />
     <ClCompile Include="main.cpp" />
@@ -164,6 +165,7 @@
     <ClCompile Include="PeaShooter.cpp" />
     <ClCompile Include="PlantShop.cpp" />
     <ClCompile Include="PolesZombie.cpp" />
+    <ClCompile Include="Pumpkin.cpp" />
     <ClCompile Include="Squash.cpp" />
     <ClCompile Include="SunFlower.cpp" />
     <ClCompile Include="UI.cpp" />
@@ -182,6 +184,7 @@
     <ClInclude Include="DoubleShooter.h" />
     <ClInclude Include="GameControl.h" />
     <ClInclude Include="GameWindow.h" />
+    <ClInclude Include="Garlic.h" />
     <ClInclude Include="HighNut.h" />
     <ClInclude Include="IceShooter.h" />
     <ClInclude Include="MainWindow.h" />
@@ -193,6 +196,7 @@
     <ClInclude Include="PeaShooter.h" />
     <ClInclude Include="PlantShop.h" />
     <ClInclude Include="PolesZombie.h" />
+    <ClInclude Include="Pumpkin.h" />
     <ClInclude Include="Squash.h" />
     <ClInclude Include="SunFlower.h" />
     <ClInclude Include="UI.h" />

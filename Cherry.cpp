@@ -4,9 +4,10 @@
 //构造函数
 Cherry::Cherry(int r, int c)
 	:
-	AbstractPlant(HP_SQUASH, r, c)//类型是植物
+	AbstractPlant(Cherry_t,HP_SQUASH, r, c)//类型是植物
 {
 	timeleft = 10;
+	
 }
 
 //析构函数

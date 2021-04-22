@@ -51,11 +51,17 @@ public:
 	unsigned int GetTime()const { return timecounter; }
 	//获取分数
 	int GetScore()const { return score; }
+
+	void ZombieMoveByGarlic(int i, int j, int k);
+
 private:
 	//查看僵尸是否适合前移,返回移动速度
 	int CheckPos(int r,int c,AbstractZombie* zmb);
 	//僵尸进行移动
 	void ZombieMove(int i, int j, int k);
+
+
+
 	//子弹进行移动
 	void BulletMove(int i, int j);
 	//按照一定时间产生僵尸

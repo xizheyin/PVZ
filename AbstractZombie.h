@@ -6,6 +6,7 @@ class AbstractZombie
     :public Object
 {
 public:
+
     //构造函数
     AbstractZombie(int hp,int r,int gap);
     //析构函数

@@ -36,14 +36,22 @@ void UI::ShowChessboard(ChessBoard* chessbd) {
 			for (int k = 0; k < chessbd->GetPlotSize(i,j); k++) {
 				obj = nullptr;
 				obj = chessbd->GetObject(i, j, k);
+				if (obj->GetType() == Object::Plant_t) {
+					if (static_cast<AbstractPlant*>(obj)->GetPlantType() == AbstractPlant::Cherry_t) {
+						set_std_pos(pos.x - 3, pos.y + 1);
+						cout << static_cast<Cherry*>(obj)->GetTimeLeft();
+					}
+					else if (static_cast<AbstractPlant*>(obj)->GetPlantType() == AbstractPlant::Pumpkin_t) {
+						set_std_pos(pos.x - 3, pos.y + 1);
+						cout << obj->GetName()<<""<< (100 * obj->GetHp()) / obj->GetMaxHp() << "%";
+						continue;
+					}
+				}
 				set_std_pos(pos.x - 3, pos.y - 1);
 				cout << "" << (100*obj->GetHp()) / obj->GetMaxHp() << "%";
 				set_std_pos(pos.x-2, pos.y);
 				cout << obj->GetName();//输出植物和僵尸
-				if ((obj->AttackEnemy(0)).GetAttackType() == Attack::Cherry_t) {
-					set_std_pos(pos.x - 3, pos.y + 1);
-					cout << static_cast<Cherry*>(obj)->GetTimeLeft();
-				}
+				
 			}			
 		}
 	}
@@ -58,7 +66,7 @@ void UI::BuyPlant(ChessBoard* chessbd, PlantShop* pshop) {
 	while (1) {
 		if (_kbhit()) {
 			ch = _getch();//获取按下的按键
-			if(ch>='1'&&ch<='10')break;
+			if(ch>='0'&&ch<='9')break;
 		}
 		Sleep(200);
 	}
@@ -68,7 +76,7 @@ void UI::BuyPlant(ChessBoard* chessbd, PlantShop* pshop) {
 	rcp=SelectArea(chessbd);
 	switch (ch)
 	{
-	case '1'://太阳花
+	case '0'://太阳花
 		obj = new SunFlower();//hp是10
 		if (pshop->CheckEnough(PlantShop::SunFlower_t)) {
 			Success=pshop->SettlePlant(obj, chessbd, rcp.row, rcp.col);
@@ -76,7 +84,7 @@ void UI::BuyPlant(ChessBoard* chessbd, PlantShop* pshop) {
 			return;
 		}
 		break;
-	case '2'://豌豆射手
+	case '1'://豌豆射手
 		obj = new PeaShooter();//利用默认参数列表，后续设置位置
 		if (pshop->CheckEnough(PlantShop::PeaShooter_t)) {
 			Success=pshop->SettlePlant(obj, chessbd, rcp.row, rcp.col);
@@ -84,7 +92,7 @@ void UI::BuyPlant(ChessBoard* chessbd, PlantShop* pshop) {
 			return;
 		}
 		break;
-	case '3'://坚果墙
+	case '2'://坚果墙
 		obj = new NutWall();
 		if (pshop->CheckEnough(PlantShop::NutWall_t)) {
 			Success = pshop->SettlePlant(obj, chessbd, rcp.row, rcp.col);
@@ -92,7 +100,7 @@ void UI::BuyPlant(ChessBoard* chessbd, PlantShop* pshop) {
 			return;
 		}
 		break;
-	case '4'://双发射手
+	case '3'://双发射手
 		obj = new DoubleShooter();
 		if (pshop->CheckEnough(PlantShop::DoubleShooter_t)) {
 			Success = pshop->SettlePlant(obj, chessbd, rcp.row, rcp.col);
@@ -100,7 +108,7 @@ void UI::BuyPlant(ChessBoard* chessbd, PlantShop* pshop) {
 			return;
 		}
 		break;
-	case '5':
+	case '4':
 		obj = new IceShooter();
 		if (pshop->CheckEnough(PlantShop::IceShooter_t)) {
 			Success = pshop->SettlePlant(obj, chessbd, rcp.row, rcp.col);
@@ -108,7 +116,7 @@ void UI::BuyPlant(ChessBoard* chessbd, PlantShop* pshop) {
 			return;
 		}
 		break;
-	case '6':
+	case '5':
 		obj = new HighNut();
 		if (pshop->CheckEnough(PlantShop::IceShooter_t)) {
 			Success = pshop->SettlePlant(obj, chessbd, rcp.row, rcp.col);
@@ -116,7 +124,7 @@ void UI::BuyPlant(ChessBoard* chessbd, PlantShop* pshop) {
 			return;
 		}
 		break;
-	case '7':
+	case '6':
 		obj = new Squash();
 		if (pshop->CheckEnough(PlantShop::Squash_t)) {
 			Success = pshop->SettlePlant(obj, chessbd, rcp.row, rcp.col);
@@ -124,11 +132,27 @@ void UI::BuyPlant(ChessBoard* chessbd, PlantShop* pshop) {
 			return;
 		}
 		break;
-	case '8':
+	case '7':
 		obj = new Cherry();
 		if (pshop->CheckEnough(PlantShop::Cherry_t)) {
 			Success = pshop->SettlePlant(obj, chessbd, rcp.row, rcp.col);
 			if (Success)pshop->SubSun(PlantShop::Cherry_t);
+			return;
+		}
+		break;
+	case '8':
+		obj = new Garlic();
+		if (pshop->CheckEnough(PlantShop::Garlic_t)) {
+			Success = pshop->SettlePlant(obj, chessbd, rcp.row, rcp.col);
+			if (Success)pshop->SubSun(PlantShop::Garlic_t);
+			return;
+		}
+		break;
+	case '9':
+		obj = new Pumpkin();
+		if (pshop->CheckEnough(PlantShop::Pumpkin_t)) {
+			Success = pshop->SettlePlant(obj, chessbd, rcp.row, rcp.col);//南瓜头就穿进去一个空obj
+			if (Success)pshop->SubSun(PlantShop::Pumpkin_t);
 			return;
 		}
 		break;
@@ -193,7 +217,6 @@ const RCPair UI::SelectArea(ChessBoard* chessbd) {
 			PrintSelectBox(r, c);
 		}
 	}
-
 }
 
 void UI::PrintSelectBox(int r, int c) {
@@ -220,8 +243,8 @@ void UI::ShowShop() {
 	set_std_pos(pos.x, pos.y);
 	cout << "欢迎来到植物商店" << endl;
 	cout << "+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+" << endl;
-	cout << "|   1    |   2    |   3    |   4    |   5    |   6    |   7    |   8    |        |        |" << endl;
-	cout << "| 太阳花 |豌豆射手| 坚果墙 |双发射手|寒冰射手| 高坚果 |  倭瓜  |  樱桃  |        |        |" << endl;
-	cout << "|  ￥75  | ￥100  |  ￥60  | ￥150  | ￥120  | ￥150  |  ￥80  | ￥100  |        |        |" << endl;
+	cout << "|   0    |   1    |   2    |   3    |   4    |   5    |   6    |   7    |   8    |   9    |" << endl;
+	cout << "| 太阳花 |豌豆射手| 坚果墙 |双发射手|寒冰射手| 高坚果 |  倭瓜  |  樱桃  |  大蒜  |  南瓜  |" << endl;
+	cout << "|  ￥75  | ￥100  |  ￥60  | ￥150  | ￥120  | ￥150  |  ￥80  | ￥100  |  ￥100 |  ￥50  |" << endl;
 	cout << "+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+" << endl;
 }

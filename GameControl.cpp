@@ -24,7 +24,7 @@ void GameControl::UpdateChessbd(ChessBoard* chessbd,PlantShop* pshop) {
 					PlantControl(obj, chessbd, pshop);
 					break;
 				case Object::Zombie_t://如果生物是僵尸的话，那么转进僵尸的控制模块
-					ZombieControl(obj, chessbd);
+					ZombieControl(obj, chessbd, k);
 					break;
 				default:
 					break;
@@ -97,7 +97,7 @@ void GameControl::PlantControl(Object* obj,ChessBoard* chessbd,PlantShop* pshop)
 }
 
 //控制僵尸攻击，目前只有普通僵尸
-void GameControl::ZombieControl(Object* obj,ChessBoard* chessbd) {
+void GameControl::ZombieControl(Object* obj,ChessBoard* chessbd,int k) {
 	Attack attack = obj->AttackEnemy(chessbd->GetTime());
 	RCPair rc = obj->GetRC();
 	Object* enemy = nullptr;
@@ -114,6 +114,9 @@ void GameControl::ZombieControl(Object* obj,ChessBoard* chessbd) {
 		if (enemy != nullptr) {
 			if (enemy->GetType() == Object::Plant_t) {
 				enemy->Isattacked(attack.GetATK());
+				if (static_cast<AbstractPlant*>(enemy)->GetPlantType() == AbstractPlant::Garlic_t) {//如果是大蒜的话就移动
+					chessbd->ZombieMoveByGarlic(rc.row, rc.col, k);
+				}
 			}
 		}
 		break;
@@ -126,9 +129,9 @@ void GameControl::ZombieControl(Object* obj,ChessBoard* chessbd) {
 						enemy = chessbd->GetObject(rc.row + i, rc.col + j, 0);
 						if (enemy->GetType() == Object::Plant_t)
 							enemy->Isattacked(attack.GetATK());
-						//小丑也把自己炸死
+						
 					}
-					obj->Isattacked(attack.GetATK());
+					obj->Isattacked(attack.GetATK());//小丑也把自己炸死
 				}
 			}
 		}

@@ -2,7 +2,7 @@
 
 SunFlower::SunFlower(int r , int c) 
 	:
-	AbstractPlant(HP_SUNFLOWER, r, c)
+	AbstractPlant(SunFlower_t,HP_SUNFLOWER, r, c)
 {
 }
 

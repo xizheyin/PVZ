@@ -50,10 +50,33 @@ ChessBoard::~ChessBoard() {
 bool ChessBoard::AddPlant(AbstractPlant* plant,int row,int col) {
 	plant->SetRow(row);
 	plant->SetCol(col);
+	if (plant->GetPlantType() == AbstractPlant::Pumpkin_t) {
+		if (yard[row][col].empty()) {
+			yard[row][col].push_back(plant);
+			return true;
+		}
+		else if (yard[row][col].size() == 1) {
+			yard[row][col].push_back(plant);//Èç¹ûÖ®Ç°ÓÐÖ²Îï£¬¾ÍÈÃÄÏ¹ÏÍ·ÔÚÇ°
+			swap(yard[row][col][0], yard[row][col][1]);
+			return true;
+		}
+		else return false;
+	}
+
 	//Èç¹ûÕâ¸öµØ¿éÏòÁ¿ÊÇ¿ÕµÄ»°£¬¾Ípush½øÈ¥Ö²Îï,ÒòÎªÖ²Îï²»ÄÜÖØµþ·Å£¬Ö²ÎïºÍ½©Ê¬²»ÄÜÖØµþ·Å
 	if (yard[row][col].empty()) {
 		yard[row][col].push_back(plant);
 		return true;
+	}
+	else if (yard[row][col].size() == 1) {
+		if (yard[row][col][0]->GetType() == Object::Plant_t) {
+			if (static_cast<AbstractPlant*>(yard[row][col][0])->GetPlantType() == AbstractPlant::Pumpkin_t) {
+				yard[row][col].push_back(plant);
+				return true;
+			}
+			else return false;
+		}
+		else return false;
 	}
 	else return false;
 }
@@ -119,6 +142,7 @@ void ChessBoard::ClearBullet(int r, int c) {
 
 //¼ì²é½©Ê¬ÊÇ·ñÊÊºÏÒÆ¶¯µ½Õâ¸öÎ»ÖÃ
 int ChessBoard::CheckPos(int r,int c,AbstractZombie* zmb) {//µ±¿Õ»òÕßÊÇ½©Ê¬£¬½©Ê¬ÊÊºÏÒÆ¶¯µ½ÕâÀï
+	if (r >= ROW_NUM || r < 0)return 0;
 	if (c < 0)return false;
 	if (yard[r][c].empty())return true;
 	else if (yard[r][c][0]->GetType() == Object::Zombie_t)return 1;
@@ -136,6 +160,29 @@ int ChessBoard::CheckPos(int r,int c,AbstractZombie* zmb) {//µ±¿Õ»òÕßÊÇ½©Ê¬£¬½©Ê
 	else return 0;
 }
 
+
+void ChessBoard::ZombieMoveByGarlic(int i, int j, int k) {
+	AbstractZombie* zmb = static_cast<AbstractZombie*>(yard[i][j][k]);
+	int currow = i;
+	int curcol = j;
+	while (1) {
+		int randnum = random_num(2);
+		int dir = (randnum == 1) ? 1 : -1;
+		int nextrow = currow + dir;
+		int nextcol = curcol;
+		int speed = CheckPos(nextrow, nextcol, zmb);
+		if (speed) {//µ±½©Ê¬¿ÉÒÔÒÆ¶¯µÄ»°£¬¾ÍÒÆ¶¯
+			zmb->SetRC(nextrow, nextcol);//ÐÞ¸Ä½©Ê¬Î»ÖÃ
+			yard[nextrow][nextcol].push_back(zmb);//ÐÞ¸ÄÆåÅÌ
+			yard[currow][curcol].erase(yard[i][j].begin() + k);
+			break;
+		}
+	}
+	return;
+}
+
+
+
 void ChessBoard::ZombieMove(int i,int j, int k) {
 	AbstractZombie* zmb = static_cast<AbstractZombie*>(yard[i][j][k]);
 	if (!(zmb->CanMove(timecounter)))return;
@@ -151,6 +198,9 @@ void ChessBoard::ZombieMove(int i,int j, int k) {
 		yard[currow][curcol].erase(yard[i][j].begin() + k);
 	}
 }
+
+
+
 
 void ChessBoard::BulletMove(int i, int j) {
 	Bullet* blt = bulletyard[i][j];

@@ -3,7 +3,7 @@
 //构造函数
 IceShooter::IceShooter(int r, int c)
 	:
-	AbstractPlant(HP_ICESHOOTER, r, c),//类型是植物
+	AbstractPlant(IceShooter_t,HP_ICESHOOTER, r, c),//类型是植物
 	timegap(TIME_GAP_ICESHOOTER_ATTACK)
 {
 }

@@ -65,6 +65,10 @@ const int HP_SQUASH = 10;
 //樱桃
 const int HP_CHERRY = 20;
 
+const int HP_GARLIC = 20;
+
+const int HP_PUMPKIN = 120;
+
 
 
 //豌豆射手攻击gap
@@ -85,7 +89,8 @@ const int ICESHOOTER_COST = 120;
 const int HIGHNUT_COST = 200;
 const int SQUASH_COST = 80;
 const int CHERRY_COST = 100;
-
+const int GARLIC_COST = 100;
+const int PUMPKIN_COST = 50;
 
 //初始化阳光数目
 const int INIT_SUN = 5000;

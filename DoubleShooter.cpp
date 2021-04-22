@@ -4,7 +4,7 @@
 //构造函数
 DoubleShooter::DoubleShooter(int r, int c)
 	:
-	AbstractPlant(HP_DOUBLESHOOTER, r, c),//类型是植物
+	AbstractPlant(DoubleShooter_t,HP_DOUBLESHOOTER, r, c),//类型是植物
 	timegap(TIME_GAP_DOUBLESHOOTER_ATTACK)
 {
 }

@@ -7,6 +7,8 @@
 #include"HighNut.h"
 #include"Squash.h"
 #include"Cherry.h"
+#include"Garlic.h"
+#include"Pumpkin.h"
 #include"ChessBoard.h"
 
 class PlantShop
@@ -16,14 +18,15 @@ public:
 		None_t,
 		Plant_t,
 		PeaShooter_t,
-		NormalZombie_t,
 		SunFlower_t,
 		NutWall_t,
 		HighNut_t,
 		DoubleShooter_t,
 		IceShooter_t,
 		Squash_t,
-		Cherry_t
+		Cherry_t,
+		Garlic_t,
+		Pumpkin_t
 	};
 	PlantShop();
 	~PlantShop();

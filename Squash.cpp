@@ -3,7 +3,7 @@
 //构造函数
 Squash::Squash(int r, int c)
 	:
-	AbstractPlant(HP_SQUASH, r, c)//类型是植物
+	AbstractPlant(Squash_t,HP_SQUASH, r, c)//类型是植物
 {
 }
 

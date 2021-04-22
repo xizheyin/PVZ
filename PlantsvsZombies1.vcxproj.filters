@@ -99,6 +99,12 @@
     <ClCompile Include="Cherry.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Garlic.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Pumpkin.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractPlant.h">
@@ -180,6 +186,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Cherry.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Garlic.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Pumpkin.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

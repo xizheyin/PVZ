@@ -122,7 +122,7 @@ void GameControl::ZombieControl(Object* obj,ChessBoard* chessbd,int k) {
 		break;
 	case Attack::ClownZombie_t:
 		rnum=random_num(100);
-		if (rnum < 5||rc.col<=6) {
+		if (rnum < 3||rc.col<=6) {
 			for (int i = -1; i <= 1; i++) {//遍历3x3
 				for (int j = -4; j <= 4; j++) {
 					if (chessbd->GetPlotSize(rc.row + i, rc.col + j) > 0) {
@@ -132,6 +132,17 @@ void GameControl::ZombieControl(Object* obj,ChessBoard* chessbd,int k) {
 						
 					}
 					obj->Isattacked(attack.GetATK());//小丑也把自己炸死
+				}
+			}
+		}
+		else {
+			if (chessbd->GetPlotSize(rc.row, rc.col - 1) > 0)enemy = chessbd->GetObject(rc.row, rc.col - 1, 0);//找到前面的植物，
+			if (enemy != nullptr) {
+				if (enemy->GetType() == Object::Plant_t) {
+					enemy->Isattacked(10);
+					if (static_cast<AbstractPlant*>(enemy)->GetPlantType() == AbstractPlant::Garlic_t) {//如果是大蒜的话就移动
+						chessbd->ZombieMoveByGarlic(rc.row, rc.col, k);
+					}
 				}
 			}
 		}

@@ -118,7 +118,7 @@ void UI::BuyPlant(ChessBoard* chessbd, PlantShop* pshop) {
 		break;
 	case '5':
 		obj = new HighNut();
-		if (pshop->CheckEnough(PlantShop::IceShooter_t)) {
+		if (pshop->CheckEnough(PlantShop::HighNut_t)) {
 			Success = pshop->SettlePlant(obj, chessbd, rcp.row, rcp.col);
 			if (Success)pshop->SubSun(PlantShop::HighNut_t);
 			return;

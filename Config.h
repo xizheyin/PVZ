@@ -96,6 +96,8 @@ const int PUMPKIN_COST = 50;
 const int INIT_SUN = 5000;
 
 
+const int COOLING[10] = { 10,10,10,10,10,10,10,10,10,10 };
+
 
 //…Ë÷√—’…´
 void set_std_color(int color);

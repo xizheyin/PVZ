@@ -45,13 +45,14 @@ void GameWindow::Play() {
 //更新函数，利用gamectrl来控制chessbd
 void GameWindow::Update() {
 	gamectrl->UpdateChessbd(chessbd,pshop);//对植物等Object状态进行更新
+	pshop->UpdateTime();
 	bool flag = chessbd->Update();//棋盘的内容进行更新
 	if (!flag)GameOver();
 }
 
 //刷新屏幕
 void GameWindow::Show() {
-	ui->ShowChessboard(chessbd);
+	ui->ShowChessboard(chessbd,pshop);
 	ui->ShowInfo(chessbd, pshop);
 }
 

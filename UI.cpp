@@ -1,4 +1,6 @@
 #include "UI.h"
+#include<iomanip>
+
 
 //在下面展示一些基础信息
 void UI::ShowInfo(ChessBoard* chessbd, PlantShop* pshop) {
@@ -10,7 +12,7 @@ void UI::ShowInfo(ChessBoard* chessbd, PlantShop* pshop) {
 }
 
 //输出棋盘
-void UI::ShowChessboard(ChessBoard* chessbd) {
+void UI::ShowChessboard(ChessBoard* chessbd,PlantShop* pshop) {
 	ios::sync_with_stdio(false);
 	set_std_pos(0, 0);
 	for (int i = 0; i < 4; i++) {//分割线
@@ -55,7 +57,7 @@ void UI::ShowChessboard(ChessBoard* chessbd) {
 			}			
 		}
 	}
-	ShowShop();
+	ShowShop(pshop);
 	hide_std();
 }
 
@@ -73,7 +75,7 @@ void UI::BuyPlant(ChessBoard* chessbd, PlantShop* pshop) {
 	Object* obj = nullptr;
 	RCPair rcp(-1,-1);
 	bool Success = false;
-	rcp=SelectArea(chessbd);
+	rcp=SelectArea(chessbd,pshop);
 	switch (ch)
 	{
 	case '0'://太阳花
@@ -164,14 +166,14 @@ void UI::BuyPlant(ChessBoard* chessbd, PlantShop* pshop) {
 }
 
 //选择地块
-const RCPair UI::SelectArea(ChessBoard* chessbd) {
+const RCPair UI::SelectArea(ChessBoard* chessbd,PlantShop* pshop) {
 	RCPair rcp(-1, -1);
 
 	char chInput;//定义一个char型变量存储按下按键的值
 	int r = 0, c = 1;
 	Pos pos = GetPos(r, c);
 	set_std_pos(pos.x, pos.y);
-	this->ShowChessboard(chessbd);
+	this->ShowChessboard(chessbd,pshop);
 	while (1) {
 		
 		PrintSelectBox(r, c);
@@ -213,7 +215,7 @@ const RCPair UI::SelectArea(ChessBoard* chessbd) {
 			default:
 				break;
 			}
-			this->ShowChessboard(chessbd);
+			this->ShowChessboard(chessbd,pshop);
 			PrintSelectBox(r, c);
 		}
 	}
@@ -238,7 +240,7 @@ void UI::PrintSelectBox(int r, int c) {
 	reset_std_color();
 }
 
-void UI::ShowShop() {
+void UI::ShowShop(PlantShop* pshop) {
 	Pos pos = GetPos(ROW_NUM+1, 0);
 	set_std_pos(pos.x, pos.y);
 	cout << "欢迎来到植物商店" << endl;
@@ -247,4 +249,12 @@ void UI::ShowShop() {
 	cout << "| 太阳花 |豌豆射手| 坚果墙 |双发射手|寒冰射手| 高坚果 |  倭瓜  |  樱桃  |  大蒜  |  南瓜  |" << endl;
 	cout << "|  ￥75  | ￥100  |  ￥60  | ￥150  | ￥120  | ￥150  |  ￥80  | ￥100  |  ￥100 |  ￥50  |" << endl;
 	cout << "+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+" << endl;
+	cout << endl;
+	cout << "+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+" << endl;
+	set_std_pos(pos.x + 1, pos.y + 6);
+	vector<int> ct = pshop->GetCoolingTime();
+	cout << " ";
+	for (int i = 0; i < 10; i++) {
+		cout << left << setw(9) << ct[i];
+	}
 }
